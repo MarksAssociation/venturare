@@ -4,20 +4,30 @@ import Container from '@/components/ui/Container.astro';
 import Section from '@/components/ui/Section.astro';
 import Eyebrow from '@/components/ui/Eyebrow.astro';
 import Heading from '@/components/ui/Heading.astro';
+import Button from '@/components/ui/Button.astro';
 import CTA from '@/components/ui/CTA.astro';
+import BusinessFrontCard from '@/components/cards/BusinessFrontCard.astro';
 import { generateWebPageJsonLd } from '@/lib/json-ld';
-import { SITE_URL, SOLUTIONS, APPROACH } from '@/lib/constants';
+import { SITE_URL, SOLUTIONS, BUSINESS_FRONTS, SOLUTION_CAPABILITY_TAGLINES } from '@/lib/constants';
+
+const frontIcons = [
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg>`,
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.5V11c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V5.5Z"/><path d="M9.5 11.5l2 2 3.5-4"/></svg>`,
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5l2 2"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5l-2-2"/><path d="M4 20v-5h5"/></svg>`,
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19a9 9 0 1 1 14 0"/><path d="M12 13l4-4"/></svg>`,
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20v-9"/><path d="M12 20V5"/><path d="M17 20v-6"/></svg>`,
+];
 
 const jsonLd = JSON.stringify(generateWebPageJsonLd({
   title: 'Soluções',
-  description: 'Três domínios de atuação estratégica para transformar desafios complexos em resultados concretos.',
+  description: 'Conectamos estratégia, tecnologia e execução para ajudar organizações a decidir melhor, transformar com precisão e avançar com consistência.',
   url: `${SITE_URL}/solucoes`,
 }));
 ---
 
 <PageLayout
   title="Soluções"
-  description="Três domínios de atuação estratégica para transformar desafios complexos em resultados concretos."
+  description="Conectamos estratégia, tecnologia e execução para ajudar organizações a decidir melhor, transformar com precisão e avançar com consistência."
   jsonLd={jsonLd}
 >
 
@@ -28,41 +38,85 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
     <Container>
       <div class="max-w-4xl">
         <Eyebrow text="Soluções" class="mb-8" />
-        <Heading tag="h1" size="hero" class="mb-8 text-balance">
-          TRANSFORMAÇÃO EXIGE MAIS DO QUE UMA BOA SOLUÇÃO.
+        <Heading tag="h1" size="hero" class="mb-8 max-w-4xl text-balance">
+          Soluções estratégicas para transformar<br /> desafios em resultados.
         </Heading>
-        <p class="text-body-xl text-venturare-muted/80 max-w-2xl leading-relaxed">
-          Exige compreensão, direção e capacidade para fazer acontecer.
+        <p class="text-body-xl text-venturare-muted/80 max-w-2xl leading-relaxed mb-12">
+          Conectamos estratégia, tecnologia e execução para ajudar organizações a decidir melhor, transformar com precisão e avançar com consistência.
         </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <Button href="/conversar" variant="primary" size="lg">
+            Vamos conversar
+            <span class="ml-1">&rarr;</span>
+          </Button>
+          <Button href="/como-pensamos" variant="secondary" size="lg">
+            Conheça nossa abordagem
+            <span class="ml-1">&rarr;</span>
+          </Button>
+        </div>
       </div>
     </Container>
   </Section>
 
   {/* ═══════════════════════════════════════════════════
-       PERSPECTIVA
-       ═══════════════════════════════════════════════════ */}
-  <Section padding="xl" border>
-    <Container>
-      <div class="max-w-4xl mx-auto text-center">
-        <p class="text-h2 font-display font-bold text-venturare-white tracking-tight text-balance">
-          O DESAFIO RARAMENTE ESTÁ ISOLADO.
-        </p>
-      </div>
-    </Container>
-  </Section>
-
-  {/* ═══════════════════════════════════════════════════
-       DOMÍNIOS — índice editorial
+       FRENTES DE NEGÓCIO
        ═══════════════════════════════════════════════════ */}
   <Section padding="xl" border>
     <Container>
       <div class="max-w-3xl mb-16">
-        <Eyebrow text="Domínios de atuação" />
+        <Eyebrow text="Frentes de negócio" />
         <Heading tag="h2" size="h2" class="mb-6">
-          Três domínios, uma mesma direção
+          Onde podemos gerar valor
         </Heading>
         <p class="text-body-lg text-venturare-muted/80">
-          Cada domínio responde a uma etapa do percurso — e sustenta as demais.
+          Desafios diferentes exigem perspectivas diferentes. Atuamos em frentes complementares para conectar decisão, transformação e resultado.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {BUSINESS_FRONTS.map((front, i) => (
+          <BusinessFrontCard
+            index={front.index}
+            title={front.title}
+            tagline={front.tagline}
+            items={front.items}
+            benefit={front.benefit}
+            icon={frontIcons[i]}
+          />
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       INTEGRAÇÃO
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border tone="subtle">
+    <Container>
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-h2 font-display font-bold text-venturare-white tracking-tight text-balance mb-8">
+          O desafio pode começar em qualquer lugar.<br />
+          <span class="text-venturare-green">A transformação precisa conectar tudo.</span>
+        </p>
+        <p class="text-body-lg text-venturare-muted/80 max-w-2xl mx-auto leading-relaxed">
+          Um desafio de crescimento pode exigir tecnologia. Uma questão operacional pode revelar uma decisão estratégica. Uma transformação pode depender de governança e capacidade de execução. Por isso, conectamos diferentes competências conforme a realidade de cada organização.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       CAPACIDADES — índice editorial
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mb-16">
+        <Eyebrow text="Capacidades" />
+        <Heading tag="h2" size="h2" class="mb-6">
+          Nossas três capacidades
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/80">
+          As frentes de negócio mostram onde podemos gerar valor. Nossas capacidades mostram como conectamos conhecimento, tecnologia e execução para fazer isso acontecer.
         </p>
       </div>
 
@@ -70,18 +124,18 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
         {SOLUTIONS.map((solution, i) => (
           <a
             href={solution.href}
-            class="group block py-12 lg:py-16"
+            class="group block py-10 lg:py-12"
             aria-label={`${solution.title} — ver detalhes`}
           >
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-baseline">
               <div class="lg:col-span-2">
-                <span class="text-h1 font-display font-extrabold tracking-tighter text-venturare-muted/35 group-hover:text-venturare-green/60 transition-colors duration-300">
+                <span class="text-h3 font-display font-extrabold tracking-tighter text-venturare-muted/35 group-hover:text-venturare-green/60 transition-colors duration-300">
                   {String(i + 1).padStart(2, '0')}
                 </span>
               </div>
               <div class="lg:col-span-4">
                 <span class="text-caption text-venturare-green/60 uppercase tracking-widest">
-                  Domínio {String(i + 1).padStart(2, '0')}
+                  Capacidade {String(i + 1).padStart(2, '0')}
                 </span>
                 <h3 class="text-h3 text-venturare-white mt-2 font-display font-semibold tracking-tight group-hover:text-venturare-green transition-colors duration-300">
                   {solution.title}
@@ -89,7 +143,7 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
               </div>
               <div class="lg:col-span-5 lg:col-start-8">
                 <p class="text-body-lg text-venturare-muted/80 leading-relaxed">
-                  {solution.description}
+                  {SOLUTION_CAPABILITY_TAGLINES[solution.id]}
                 </p>
               </div>
               <div class="lg:col-span-1 hidden lg:flex justify-end">
@@ -105,39 +159,14 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
   </Section>
 
   {/* ═══════════════════════════════════════════════════
-       JOURNEY
-       ═══════════════════════════════════════════════════ */}
-  <Section padding="xl" border class="pt-12 lg:pt-16">
-    <Container>
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-          <Eyebrow text="O percurso" />
-          <Heading tag="h2" size="h2" class="mb-6">
-            Um mesmo caminho orienta cada solução
-          </Heading>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
-          {APPROACH.map((step) => (
-            <div class="text-center">
-              <p class="text-caption text-venturare-green/70 uppercase tracking-widest mb-3">{step.index}</p>
-              <p class="text-button text-venturare-white font-display font-semibold">{step.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </Container>
-  </Section>
-
-  {/* ═══════════════════════════════════════════════════
        CTA
        ═══════════════════════════════════════════════════ */}
   <CTA
-    title="COMO PODEMOS AJUDAR É UMA PERGUNTA QUE SÓ FAZ SENTIDO APÓS COMPREENDER O DESAFIO."
-    sub="Vamos começar pela compreensão."
-    primaryLabel="Conversar"
+    title="Não começamos pela tecnologia."
+    highlight="Começamos pela compreensão."
+    sub="Vamos entender o desafio, identificar as possibilidades e definir o próximo movimento."
+    primaryLabel="Vamos conversar"
     primaryHref="/conversar"
-    secondaryLabel="Conhecer nossa abordagem"
-    secondaryHref="/como-pensamos"
   />
 
 </PageLayout>

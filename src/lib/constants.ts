@@ -116,6 +116,91 @@ export const SOLUTIONS = [
   },
 ];
 
+export interface BusinessFront {
+  index: string;
+  title: string;
+  tagline: string;
+  items: string[];
+  benefit: string;
+}
+
+export const BUSINESS_FRONTS: BusinessFront[] = [
+  {
+    index: '01',
+    title: 'ESTRATÉGIA CORPORATIVA',
+    tagline: 'Clareza para decidir. Direção para avançar.',
+    items: [
+      'Direcionamento estratégico',
+      'Visão de futuro',
+      'Planejamento e desdobramento',
+      'Priorização de iniciativas',
+      'Modelos de negócio',
+    ],
+    benefit: 'Decisões mais claras e alinhadas ao futuro desejado.',
+  },
+  {
+    index: '02',
+    title: 'GOVERNANÇA E GESTÃO',
+    tagline: 'Estrutura para sustentar decisões importantes.',
+    items: [
+      'Governança corporativa e de tecnologia',
+      'Processos, políticas e controles',
+      'Gestão de riscos',
+      'Indicadores e rituais de gestão',
+      'Organização e responsabilidades',
+    ],
+    benefit: 'Mais controle, transparência e capacidade de decisão.',
+  },
+  {
+    index: '03',
+    title: 'TRANSFORMAÇÃO EMPRESARIAL',
+    tagline: 'Transformar exige mais do que mudar. Exige direção.',
+    items: [
+      'Transformação organizacional',
+      'Redesenho de processos',
+      'Jornadas e experiências',
+      'Modernização operacional',
+      'Gestão da mudança',
+      'Evolução de modelos de trabalho',
+    ],
+    benefit: 'Organizações mais preparadas para operar e evoluir.',
+  },
+  {
+    index: '04',
+    title: 'PERFORMANCE E EFICIÊNCIA',
+    tagline: 'Menos desperdício. Mais capacidade de realizar.',
+    items: [
+      'Eficiência operacional',
+      'Otimização de processos',
+      'Automação',
+      'Indicadores de performance',
+      'Integração de operações',
+      'Melhoria contínua',
+    ],
+    benefit: 'Mais produtividade, consistência e geração de valor.',
+  },
+  {
+    index: '05',
+    title: 'CRESCIMENTO E NOVOS NEGÓCIOS',
+    tagline: 'Novas oportunidades precisam de escolhas consistentes.',
+    items: [
+      'Novos modelos de negócio',
+      'Produtos e serviços digitais',
+      'Estratégias de crescimento',
+      'Novas jornadas de clientes e parceiros',
+      'Parcerias estratégicas',
+      'Inteligência para expansão',
+    ],
+    benefit: 'Novas possibilidades de crescimento sustentável.',
+  },
+];
+
+export const SOLUTION_CAPABILITY_TAGLINES: Record<string, string> = {
+  'estrategia-transformacao': 'Compreender, decidir e direcionar.',
+  'tecnologia-inteligencia': 'Projetar, integrar e potencializar.',
+  'execucao-evolucao': 'Implementar, sustentar e evoluir.',
+};
+
 export interface SolutionDetail {
   id: string;
   hero: string;

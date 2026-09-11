@@ -6,7 +6,7 @@ import Eyebrow from '@/components/ui/Eyebrow.astro';
 import Heading from '@/components/ui/Heading.astro';
 import Button from '@/components/ui/Button.astro';
 import { generateWebPageJsonLd } from '@/lib/json-ld';
-import { SITE_URL, APPROACH, TESE } from '@/lib/constants';
+import { SITE_URL, TESE } from '@/lib/constants';
 
 const jsonLd = JSON.stringify(generateWebPageJsonLd({
   title: 'Como Pensamos',
@@ -57,56 +57,7 @@ const stepIconPaths: Record<string, string> = {
     </Container>
   </Section>
 
-  {/* ═══════════════════════════════════════════════════
-       SEIS PASSOS — jornada editorial
-       ═══════════════════════════════════════════════════ */}
-  <Section padding="xl" border>
-    <Container>
-      <div class="max-w-3xl mb-20">
-        <Eyebrow text="O caminho" />
-        <Heading tag="h2" size="h2" class="mb-6">
-          Seis movimentos, um percurso
-        </Heading>
-        <p class="text-body-lg text-venturare-muted/80">
-          Da compreensão ao resultado. Cada etapa depende da anterior — e nenhuma pode ser pulada sem custo.
-        </p>
-      </div>
-
-      <div class="max-w-5xl">
-        {APPROACH.map((step, i) => (
-          <div class="relative pb-10 lg:pb-12 last:pb-0">
-            {i < APPROACH.length - 1 && (
-              <div class="absolute left-[31px] lg:left-[39px] top-16 bottom-0 w-px bg-gradient-to-b from-venturare-green/50 via-venturare-border/50 to-transparent" aria-hidden="true"></div>
-            )}
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
-              <div class="md:col-span-4">
-                <div class="flex items-center gap-5">
-                  <div class="relative z-10 w-16 lg:w-20 h-16 lg:h-20 shrink-0">
-                    <div class="absolute inset-0 rounded-full border border-venturare-border/50"></div>
-                    <div class="absolute inset-1 bg-venturare-graphite rounded-full flex items-center justify-center">
-                      <span class="text-venturare-green font-display font-bold text-h4">{step.index}</span>
-                    </div>
-                  </div>
-                  <div>
-                    <p class="text-caption text-venturare-muted/80 uppercase tracking-widest mb-2">{step.practice}</p>
-                    <h3 class="text-h3 text-venturare-white font-display font-semibold tracking-tight">{step.label}</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="md:col-span-8 md:pt-3">
-                <p class="text-h4 text-venturare-white font-display font-semibold tracking-tight mb-3">
-                  {step.headline}
-                </p>
-                <p class="text-body-lg text-venturare-muted/80 leading-relaxed">
-                  {step.text}
-                </p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </Container>
-  </Section>
+  {/* SEIS PASSOS vertical removido — apresentação única dos seis movimentos em PRÁTICA abaixo */}
 
   {/* ═══════════════════════════════════════════════════
        TESE CENTRAL
