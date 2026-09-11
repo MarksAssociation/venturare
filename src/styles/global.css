@@ -97,6 +97,12 @@
     color-scheme: dark;
   }
 
+  /* Popup nativo do select (Chrome/Windows usa fundo claro por padrão):
+     fundo e texto explícitos para contraste em campo fechado e aberto. */
+  select.input option {
+    @apply bg-venturare-graphite text-venturare-white;
+  }
+
   .label {
     @apply block text-eyebrow font-semibold text-venturare-muted mb-2 uppercase;
   }

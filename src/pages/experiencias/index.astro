@@ -22,7 +22,6 @@ import {
   EXPERIENCE_CONTEXTS,
   CONFIDENTIAL_TITLE,
   CONFIDENTIAL_TEXT,
-  EXPERIENCE_CLOSING_HEADLINE,
   EXPERIENCE_CLOSING_TEXT,
 } from '@/lib/constants';
 
@@ -134,7 +133,8 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
        FECHAMENTO + CTA
        ═══════════════════════════════════════════════════ */}
   <CTA
-    title={EXPERIENCE_CLOSING_HEADLINE}
+    title="CADA DESAFIO MUDA."
+    highlight="A FORMA DE ENCARÁ-LO NÃO."
     sub={EXPERIENCE_CLOSING_TEXT}
     primaryLabel="Conversar"
     primaryHref="/conversar"

@@ -95,23 +95,19 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
        ═══════════════════════════════════════════════════ */}
   <Section padding="xl" border tone="dark" class="bg-venturare-graphite/35">
     <Container>
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20">
-        <div class="lg:col-span-4">
-          <Eyebrow text="Por que existimos" class="mb-8 lg:mb-0" />
-        </div>
-        <div class="lg:col-span-8">
-          <Heading tag="h2" size="h2" class="mb-8 text-balance">
-            {SOBRE_PORQUE_EXISTIMOS_TITLE.split('. ')[0]}.
-            <span class="block text-venturare-green">Precisa de decisões melhores.</span>
-          </Heading>
-          <div class="max-w-2xl space-y-6">
-            <p class="text-body-lg text-venturare-muted/80 leading-relaxed">
-              {SOBRE_PORQUE_EXISTIMOS_TEXT}
-            </p>
-            <p class="text-h4 font-serif italic text-venturare-white/80 leading-relaxed">
-              {SOBRE_PORQUE_EXISTIMOS_CLOSE}
-            </p>
-          </div>
+      <div class="max-w-3xl mx-auto text-center">
+        <Eyebrow text="Por que existimos" class="mb-8" />
+        <Heading tag="h2" size="h2" class="mb-8 text-balance">
+          {SOBRE_PORQUE_EXISTIMOS_TITLE.split('. ')[0]}.
+          <span class="block text-venturare-green">Precisa de decisões melhores.</span>
+        </Heading>
+        <div class="max-w-2xl mx-auto space-y-6">
+          <p class="text-body-lg text-venturare-muted/80 leading-relaxed">
+            {SOBRE_PORQUE_EXISTIMOS_TEXT}
+          </p>
+          <p class="text-h4 font-serif italic text-venturare-white/80 leading-relaxed">
+            {SOBRE_PORQUE_EXISTIMOS_CLOSE}
+          </p>
         </div>
       </div>
     </Container>

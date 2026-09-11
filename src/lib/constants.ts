@@ -386,7 +386,7 @@ export const SOBRE_ATUAR = [
 
 export const SOBRE_LIDERANCA_EYEBROW = 'POR TRÁS DA VENTURARE, EXISTE EXPERIÊNCIA.';
 export const FOUNDER = 'Marcos Penna';
-export const FOUNDER_ROLE = 'Founder & CEO';
+export const FOUNDER_ROLE = 'Fundador & CEO';
 export const FOUNDER_QUOTE =
   'Acredito que tecnologia só cria valor quando existe clareza sobre o problema que estamos tentando resolver.';
 export const FOUNDER_TEXT =

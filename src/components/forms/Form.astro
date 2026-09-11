@@ -7,7 +7,7 @@ interface Props {
 
 const { class: className = '' } = Astro.props;
 
-const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined;
+const endpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT as string | undefined;
 const configured = typeof endpoint === 'string' && endpoint.length > 0;
 ---
 
@@ -36,8 +36,8 @@ const configured = typeof endpoint === 'string' && endpoint.length > 0;
   ))}
 
   <div>
-    <label class="label" for="field-busca">O que você busca?</label>
-    <select class="input" id="field-busca" name="busca">
+    <label class="label" for="field-subject">O que você busca?</label>
+    <select class="input" id="field-subject" name="subject">
       {CONTACT_LOOKING_FOR.map((option) => (
         <option value={option.value}>{option.label}</option>
       ))}
@@ -45,9 +45,11 @@ const configured = typeof endpoint === 'string' && endpoint.length > 0;
   </div>
 
   <div>
-    <label class="label" for="field-desafio">Sobre o desafio</label>
-    <textarea class="input min-h-36" id="field-desafio" name="desafio" rows="5"></textarea>
+    <label class="label" for="field-message">Sobre o desafio</label>
+    <textarea class="input min-h-36" id="field-message" name="message" rows="5"></textarea>
   </div>
+
+  <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
   <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
     <button type="submit" class="btn btn-primary" disabled={!configured}>
@@ -81,8 +83,13 @@ const configured = typeof endpoint === 'string' && endpoint.length > 0;
       if (button) button.disabled = true;
       try {
         const data = new FormData(form);
+        const email = (form.querySelector('input[type="email"]') as HTMLInputElement | null)?.value.trim() ?? '';
+        const tema = (form.querySelector('select[name="subject"]') as HTMLSelectElement | null)?.selectedOptions[0]?.textContent?.trim() ?? '';
+        if (email) data.set('_replyto', email);
+        data.set('_subject', tema ? `Novo contato pelo site Venturare — ${tema}` : 'Novo contato pelo site Venturare');
         const response = await fetch(form.action, {
           method: 'POST',
+          headers: { Accept: 'application/json' },
           body: data,
         });
         if (!response.ok) throw new Error('network');
