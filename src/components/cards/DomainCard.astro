@@ -3,18 +3,23 @@ interface Props {
   index: number;
   title: string;
   description: string;
-  href: string;
+  href?: string;
   icon: string;
+  eyebrow?: string;
+  ctaLabel?: string;
 }
 
-const { index, title, description, href, icon } = Astro.props;
+const { index, title, description, href, icon, eyebrow, ctaLabel } = Astro.props;
 const num = String(index).padStart(2, '0');
+const eyebrowText = eyebrow ?? `Domínio ${num}`;
+const ctaText = ctaLabel ?? 'Conhecer domínio';
+const Tag = href ? 'a' : 'div';
 ---
 
-<a
+<Tag
   href={href}
   class="group relative flex flex-col h-full rounded-lg border border-venturare-border/20 bg-venturare-graphite/40 p-7 lg:p-9 transition-all duration-300 hover:-translate-y-1 hover:border-venturare-border/50 hover:bg-venturare-graphite/60"
-  aria-label={`${title} — ver detalhes`}
+  aria-label={href ? `${title} — ver detalhes` : undefined}
 >
   {/* Área superior: número + ícone */}
   <div class="flex items-start justify-between mb-6">
@@ -30,7 +35,7 @@ const num = String(index).padStart(2, '0');
   {/* Área central */}
   <div class="flex-1">
     <p class="text-caption text-venturare-green/70 uppercase tracking-widest mb-3">
-      Domínio {num}
+      {eyebrowText}
     </p>
     <h3 class="text-h4 text-venturare-white font-display font-semibold tracking-tight mb-3 group-hover:text-venturare-green transition-colors duration-300">
       {title}
@@ -40,11 +45,13 @@ const num = String(index).padStart(2, '0');
     </p>
   </div>
 
-  {/* Área inferior: seta */}
-  <div class="mt-8 flex items-center gap-2 text-small text-venturare-muted/70 group-hover:text-venturare-green transition-colors duration-300">
-    <span>Conhecer domínio</span>
-    <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-  </div>
+  {/* Área inferior: seta (somente quando há link) */}
+  {href && (
+    <div class="mt-8 flex items-center gap-2 text-small text-venturare-muted/70 group-hover:text-venturare-green transition-colors duration-300">
+      <span>{ctaText}</span>
+      <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+    </div>
+  )}
 
   {/* Detalhe de trajetória sutil */}
   <div class="absolute bottom-0 left-0 right-0 h-12 overflow-hidden rounded-b-lg pointer-events-none" aria-hidden="true">
@@ -52,4 +59,4 @@ const num = String(index).padStart(2, '0');
       <path d="M0 40 Q50 20 100 25 T200 15 L200 40 Z" fill="currentColor" class="text-venturare-green" />
     </svg>
   </div>
-</a>
+</Tag>

@@ -7,6 +7,7 @@ import Heading from '@/components/ui/Heading.astro';
 import Button from '@/components/ui/Button.astro';
 import CTA from '@/components/ui/CTA.astro';
 import BusinessFrontCard from '@/components/cards/BusinessFrontCard.astro';
+import DomainCard from '@/components/cards/DomainCard.astro';
 import { generateWebPageJsonLd } from '@/lib/json-ld';
 import { SITE_URL, SOLUTIONS, BUSINESS_FRONTS, SOLUTION_CAPABILITY_TAGLINES } from '@/lib/constants';
 
@@ -16,6 +17,12 @@ const frontIcons = [
   `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5l2 2"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5l-2-2"/><path d="M4 20v-5h5"/></svg>`,
   `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19a9 9 0 1 1 14 0"/><path d="M12 13l4-4"/></svg>`,
   `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20v-9"/><path d="M12 20V5"/><path d="M17 20v-6"/></svg>`,
+];
+
+const capIcons = [
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg>`,
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5v4M15 3h4v4M9 21H5v-4M15 21h4v-4"/><circle cx="12" cy="12" r="3"/></svg>`,
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg>`,
 ];
 
 const jsonLd = JSON.stringify(generateWebPageJsonLd({
@@ -110,7 +117,7 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
        ═══════════════════════════════════════════════════ */}
   <Section padding="xl" border>
     <Container>
-      <div class="max-w-3xl mb-16">
+      <div class="max-w-3xl mx-auto text-center mb-16">
         <Eyebrow text="Capacidades" />
         <Heading tag="h2" size="h2" class="mb-6">
           Nossas três capacidades
@@ -120,39 +127,17 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
         </p>
       </div>
 
-      <div class="max-w-5xl divide-y divide-venturare-border/20">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {SOLUTIONS.map((solution, i) => (
-          <a
+          <DomainCard
+            index={i + 1}
+            title={solution.title}
+            description={SOLUTION_CAPABILITY_TAGLINES[solution.id]}
             href={solution.href}
-            class="group block py-10 lg:py-12"
-            aria-label={`${solution.title} — ver detalhes`}
-          >
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-baseline">
-              <div class="lg:col-span-2">
-                <span class="text-h3 font-display font-extrabold tracking-tighter text-venturare-muted/35 group-hover:text-venturare-green/60 transition-colors duration-300">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-              </div>
-              <div class="lg:col-span-4">
-                <span class="text-caption text-venturare-green/60 uppercase tracking-widest">
-                  Capacidade {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 class="text-h3 text-venturare-white mt-2 font-display font-semibold tracking-tight group-hover:text-venturare-green transition-colors duration-300">
-                  {solution.title}
-                </h3>
-              </div>
-              <div class="lg:col-span-5 lg:col-start-8">
-                <p class="text-body-lg text-venturare-muted/80 leading-relaxed">
-                  {SOLUTION_CAPABILITY_TAGLINES[solution.id]}
-                </p>
-              </div>
-              <div class="lg:col-span-1 hidden lg:flex justify-end">
-                <span class="text-body text-venturare-green/70 group-hover:text-venturare-green transition-colors duration-300">
-                  &rarr;
-                </span>
-              </div>
-            </div>
-          </a>
+            icon={capIcons[i]}
+            eyebrow={`Capacidade ${String(i + 1).padStart(2, '0')}`}
+            ctaLabel="Ver detalhes"
+          />
         ))}
       </div>
     </Container>

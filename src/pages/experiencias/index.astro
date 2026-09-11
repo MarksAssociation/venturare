@@ -6,6 +6,13 @@ import Eyebrow from '@/components/ui/Eyebrow.astro';
 import Heading from '@/components/ui/Heading.astro';
 import CTA from '@/components/ui/CTA.astro';
 import ExperienceCard from '@/components/cards/ExperienceCard.astro';
+import DomainCard from '@/components/cards/DomainCard.astro';
+
+const ctxIcons = [
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>`,
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg>`,
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="6"/><circle cx="15" cy="12" r="6"/></svg>`,
+];
 import { getCollection } from 'astro:content';
 import { generateWebPageJsonLd } from '@/lib/json-ld';
 import {
@@ -65,23 +72,15 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
         </Heading>
       </div>
 
-      <div class="max-w-5xl divide-y divide-venturare-border/20">
-        {EXPERIENCE_CONTEXTS.map((ctx) => (
-          <div class="py-8 lg:py-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-baseline">
-              <div class="lg:col-span-2">
-                <span class="text-h3 font-display font-extrabold tracking-tighter text-venturare-green/60">
-                  {ctx.index}
-                </span>
-              </div>
-              <div class="lg:col-span-6">
-                <h3 class="text-h3 text-venturare-white font-display font-semibold tracking-tight">{ctx.title}</h3>
-              </div>
-              <div class="lg:col-span-4 lg:text-right">
-                <p class="text-body-lg text-venturare-muted/80 leading-relaxed">{ctx.description}</p>
-              </div>
-            </div>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {EXPERIENCE_CONTEXTS.map((ctx, i) => (
+          <DomainCard
+            index={i + 1}
+            title={ctx.title}
+            description={ctx.description}
+            icon={ctxIcons[i]}
+            eyebrow={`Contexto ${ctx.index}`}
+          />
         ))}
       </div>
     </Container>
