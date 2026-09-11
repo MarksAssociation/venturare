@@ -1,0 +1,99 @@
+---
+import { CONTACT_FIELDS, CONTACT_LOOKING_FOR, CONTACT_SUBMIT, CONTACT_SUCCESS_TITLE, CONTACT_SUCCESS_TEXT } from '@/lib/constants';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined;
+const configured = typeof endpoint === 'string' && endpoint.length > 0;
+---
+
+
+<form id="contact-form" method="post" action={endpoint} class:list={['grid grid-cols-1 gap-6', className]} data-success-title={CONTACT_SUCCESS_TITLE} data-success-text={CONTACT_SUCCESS_TEXT}>
+  {configured && <input type="hidden" name="form-name" value="conversar" />}
+
+  {CONTACT_FIELDS.map((field) => (
+    <div>
+      <label class="label" for={`field-${field.name}`}>{field.label}</label>
+      <input
+        class="input"
+        type={field.type}
+        id={`field-${field.name}`}
+        name={field.name}
+        placeholder={field.placeholder}
+        required={field.required}
+        autocomplete={
+          field.name === 'name' ? 'name'
+          : field.name === 'email' ? 'email'
+          : field.name === 'phone' ? 'tel'
+          : 'off'
+        }
+      />
+    </div>
+  ))}
+
+  <div>
+    <label class="label" for="field-busca">O que você busca?</label>
+    <select class="input" id="field-busca" name="busca">
+      {CONTACT_LOOKING_FOR.map((option) => (
+        <option value={option.value}>{option.label}</option>
+      ))}
+    </select>
+  </div>
+
+  <div>
+    <label class="label" for="field-desafio">Sobre o desafio</label>
+    <textarea class="input min-h-36" id="field-desafio" name="desafio" rows="5"></textarea>
+  </div>
+
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+    <button type="submit" class="btn btn-primary" disabled={!configured}>
+      {CONTACT_SUBMIT}
+    </button>
+    <span id="form-status" class="text-small text-venturare-muted/75" role="status" aria-live="polite"></span>
+  </div>
+  {!configured && (
+    <p class="text-small text-venturare-muted/70">
+      O canal de mensagens será ativado em breve. Por enquanto, escreva diretamente pelo e-mail disponível nesta página.
+    </p>
+  )}
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+  if (form && status) {
+    form.addEventListener('submit', async (event) => {
+      const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+      if (button?.disabled) {
+        event.preventDefault();
+        return;
+      }
+      event.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      status.textContent = 'Enviando...';
+      if (button) button.disabled = true;
+      try {
+        const data = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+        });
+        if (!response.ok) throw new Error('network');
+        const title = form.dataset.successTitle ?? 'RECEBEMOS.';
+        const text = form.dataset.successText ?? 'Agora começa a conversa.';
+        status.textContent = `${title} ${text}`;
+        form.reset();
+      } catch {
+        status.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+        if (button) button.disabled = false;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,42 @@
+---
+interface Props {
+  class?: string;
+  delay?: number;
+  direction?: 'up' | 'down' | 'left' | 'right';
+  duration?: 'fast' | 'normal' | 'slow';
+}
+
+const {
+  class: className = '',
+  delay = 0,
+  direction = 'up',
+  duration = 'normal',
+} = Astro.props;
+
+const directionClasses = {
+  up: 'animate-fade-in-up',
+  down: 'animate-fade-in-down',
+  left: 'animate-slide-in-right',
+  right: 'animate-slide-in-right',
+};
+
+const durationClasses = {
+  fast: 'duration-300',
+  normal: 'duration-500',
+  slow: 'duration-700',
+};
+
+const style = delay > 0 ? `animation-delay: ${delay}ms; opacity: 0;` : '';
+---
+
+<div
+  class:list={[
+    'motion-reduce:animate-none motion-reduce:opacity-100',
+    directionClasses[direction],
+    durationClasses[duration],
+    className,
+  ]}
+  style={style}
+>
+  <slot />
+</div>

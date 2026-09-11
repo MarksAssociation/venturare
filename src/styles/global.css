@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-venturare-black text-venturare-white font-sans antialiased w-full;
+    @apply transition-colors duration-200;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-venturare-white;
+  }
+
+  ::selection {
+    @apply bg-venturare-green/20 text-venturare-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-venturare-green ring-offset-2 ring-offset-venturare-black;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-venturare {
+    @apply max-w-venturare mx-auto px-6 sm:px-8 lg:px-12;
+  }
+
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .grid-12 {
+      gap: 2rem;
+    }
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5
+           font-button rounded transition-all duration-200
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-venturare-green focus-visible:ring-offset-2 focus-visible:ring-offset-venturare-black
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-venturare-green text-venturare-black font-button opacity-100
+           hover:bg-venturare-green/90 active:bg-venturare-green-dim;
+  }
+
+  .btn-secondary {
+    @apply btn border border-venturare-border text-venturare-muted font-button
+           hover:border-venturare-green/50 hover:text-venturare-white
+           active:border-venturare-green active:text-venturare-green;
+  }
+
+  .btn-ghost {
+    @apply btn text-venturare-muted font-button
+           hover:text-venturare-green active:text-venturare-green-dim;
+  }
+
+  .btn-text {
+    @apply inline-flex items-center gap-2 font-button text-venturare-muted
+           hover:text-venturare-green transition-colors duration-150;
+  }
+
+  .card {
+    @apply bg-venturare-graphite border border-venturare-border rounded-lg
+           transition-all duration-300 p-6;
+  }
+
+  .card-hover {
+    @apply card hover:border-venturare-border/80 hover:bg-venturare-graphite/80;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded bg-transparent border border-venturare-border
+           text-venturare-white placeholder:text-venturare-muted/40
+           focus:outline-none focus:ring-1 focus:ring-venturare-green focus:border-venturare-green
+           transition-all duration-150;
+    color-scheme: dark;
+  }
+
+  .label {
+    @apply block text-eyebrow font-semibold text-venturare-muted mb-2 uppercase;
+  }
+
+  .divider {
+    @apply border-t border-venturare-border/30;
+  }
+
+  .prose-content {
+    @apply max-w-prose mx-auto;
+  }
+
+  .prose-content p {
+    @apply mb-8 text-body text-venturare-muted;
+    line-height: 1.8;
+  }
+
+  .prose-content h2 {
+    @apply mt-16 mb-6 text-h2 text-venturare-white font-semibold tracking-tight;
+    line-height: 1.2;
+  }
+
+  .prose-content h3 {
+    @apply mt-12 mb-4 text-h3 text-venturare-white font-medium tracking-tight;
+    line-height: 1.3;
+  }
+
+  .prose-content ul, .prose-content ol {
+    @apply mb-8 ml-6 text-venturare-muted;
+  }
+
+  .prose-content li {
+    @apply mb-3;
+  }
+
+  .prose-content blockquote {
+    @apply border-l-2 border-venturare-green pl-5 py-1 my-10 text-venturare-muted;
+    font-style: normal;
+  }
+
+  .prose-content strong {
+    @apply text-venturare-white font-semibold;
+  }
+
+  .prose-content em {
+    @apply font-serif text-venturare-white/90;
+  }
+
+  .section-padding {
+    @apply py-20 lg:py-32;
+  }
+
+  .section-border {
+    @apply border-t border-venturare-border/20;
+  }
+
+  .motion-reduce {
+    @apply motion-reduce:animate-none motion-reduce:transition-none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+  }
+
+  @media (min-width: 640px) {
+    .text-balance {
+      text-wrap: balance;
+    }
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+  }
+
+  .sr-only-focusable {
+    @apply sr-only;
+  }
+
+  .sr-only-focusable:focus {
+    @apply not-sr-only;
+  }
+
+  .grid-span-4 {
+    grid-column: span 4;
+  }
+
+  .grid-span-6 {
+    grid-column: span 6;
+  }
+
+  .grid-span-8 {
+    grid-column: span 8;
+  }
+
+  .grid-span-12 {
+    grid-column: span 12;
+  }
+
+  @media (max-width: 640px) {
+    .grid-span-4,
+    .grid-span-6,
+    .grid-span-8,
+    .grid-span-12 {
+      grid-column: span 12;
+    }
+  }
+}

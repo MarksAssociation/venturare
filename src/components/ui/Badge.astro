@@ -1,0 +1,18 @@
+---
+interface Props {
+  text: string;
+  variant?: 'category' | 'tag';
+  class?: string;
+}
+
+const { text, variant = 'tag', class: className = '' } = Astro.props;
+
+const variantClasses = {
+  category: 'bg-venturare-green/10 text-venturare-green',
+  tag: 'bg-venturare-graphite text-venturare-muted border border-venturare-border',
+};
+---
+
+<span class:list={['inline-flex items-center px-2 py-0.5 rounded text-caption font-medium tracking-wide', variantClasses[variant], className]}>
+  {text}
+</span>

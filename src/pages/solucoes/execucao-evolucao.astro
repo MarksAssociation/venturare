@@ -1,0 +1,15 @@
+---
+import SolutionLayout from '@/layouts/SolutionLayout.astro';
+import { SOLUTION_DETAILS, SITE_URL } from '@/lib/constants';
+import { generateWebPageJsonLd } from '@/lib/json-ld';
+
+const detail = SOLUTION_DETAILS['execucao-evolucao'];
+const description = 'Transformar possibilidades em movimento. Gestão, liderança, especialistas, squads, implementação e evolução.';
+const jsonLd = JSON.stringify(generateWebPageJsonLd({
+  title: 'Execução & Evolução',
+  description,
+  url: `${SITE_URL}/solucoes/execucao-evolucao`,
+}));
+---
+
+<SolutionLayout detail={detail} description={description} jsonLd={jsonLd} />

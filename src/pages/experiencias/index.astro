@@ -1,0 +1,144 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import Heading from '@/components/ui/Heading.astro';
+import CTA from '@/components/ui/CTA.astro';
+import ExperienceCard from '@/components/cards/ExperienceCard.astro';
+import { getCollection } from 'astro:content';
+import { generateWebPageJsonLd } from '@/lib/json-ld';
+import {
+  SITE_URL,
+  EXPERIENCE_HERO,
+  EXPERIENCE_SUB,
+  EXPERIENCE_CONTEXTS,
+  CONFIDENTIAL_TITLE,
+  CONFIDENTIAL_TEXT,
+  EXPERIENCE_CLOSING_HEADLINE,
+  EXPERIENCE_CLOSING_TEXT,
+} from '@/lib/constants';
+
+const experiences = (await getCollection('experiences'))
+  .filter((exp) => !exp.data.confidential)
+  .sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+
+const jsonLd = JSON.stringify(generateWebPageJsonLd({
+  title: 'Experiências',
+  description: 'Transformações em ambientes que exigem precisão, decisões de tecnologia em escala e estratégia na interseção com a execução.',
+  url: `${SITE_URL}/experiencias`,
+}));
+---
+
+<PageLayout
+  title="Experiências"
+  description="Transformações em ambientes que exigem precisão, decisões de tecnologia em escala e estratégia na interseção com a execução."
+  jsonLd={jsonLd}
+>
+
+  {/* ═══════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════ */}
+  <Section class="pt-16 lg:pt-28 pb-16 lg:pb-24">
+    <Container>
+      <div class="max-w-4xl">
+        <Eyebrow text="Experiências" class="mb-8" />
+        <Heading tag="h1" size="hero" class="mb-8 text-balance">
+          {EXPERIENCE_HERO}
+        </Heading>
+        <p class="text-body-xl text-venturare-muted/80 max-w-2xl leading-relaxed">
+          {EXPERIENCE_SUB}
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       CONTEXTOS DE ATUAÇÃO
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mb-16">
+        <Eyebrow text="Contextos de atuação" />
+        <Heading tag="h2" size="h2" class="mb-6">
+          Onde a complexidade pede compreensão
+        </Heading>
+      </div>
+
+      <div class="max-w-5xl divide-y divide-venturare-border/20">
+        {EXPERIENCE_CONTEXTS.map((ctx) => (
+          <div class="py-10 lg:py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-baseline">
+              <div class="lg:col-span-2">
+                <span class="text-h3 font-display font-extrabold tracking-tighter text-venturare-green/60">
+                  {ctx.index}
+                </span>
+              </div>
+              <div class="lg:col-span-6">
+                <h3 class="text-h3 text-venturare-white font-display font-semibold tracking-tight">{ctx.title}</h3>
+              </div>
+              <div class="lg:col-span-4 lg:text-right">
+                <p class="text-body-lg text-venturare-muted/80 leading-relaxed">{ctx.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       EXPERIÊNCIAS PUBLICADAS
+       ═══════════════════════════════════════════════════ */}
+  {experiences.length > 0 && (
+    <Section padding="xl" border>
+      <Container>
+        <div class="max-w-3xl mb-14">
+          <Eyebrow text="Casos reais" />
+          <Heading tag="h2" size="h2" class="mb-6">
+            Experiências compartilhadas
+          </Heading>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {experiences.map((experience) => (
+            <ExperienceCard
+              title={experience.data.title}
+              description={experience.data.description}
+              industry={experience.data.industry}
+              href={`/experiencias/${experience.id}/`}
+              confidential={experience.data.confidential}
+            />
+          ))}
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  {/* ═══════════════════════════════════════════════════
+       CONFIDENCIALIDADE
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mx-auto text-center">
+        <Eyebrow text="Confidencialidade" class="mb-8" />
+        <Heading tag="h2" size="h2" class="mb-6 text-balance">
+          {CONFIDENTIAL_TITLE}
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/80 max-w-2xl mx-auto leading-relaxed">
+          {CONFIDENTIAL_TEXT}
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       FECHAMENTO + CTA
+       ═══════════════════════════════════════════════════ */}
+  <CTA
+    title={EXPERIENCE_CLOSING_HEADLINE}
+    sub={EXPERIENCE_CLOSING_TEXT}
+    primaryLabel="Conversar"
+    primaryHref="/conversar"
+  />
+
+</PageLayout>

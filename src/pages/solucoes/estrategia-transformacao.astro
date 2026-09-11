@@ -1,0 +1,15 @@
+---
+import SolutionLayout from '@/layouts/SolutionLayout.astro';
+import { SOLUTION_DETAILS, SITE_URL } from '@/lib/constants';
+import { generateWebPageJsonLd } from '@/lib/json-ld';
+
+const detail = SOLUTION_DETAILS['estrategia-transformacao'];
+const description = 'Compreender e definir a direção. Diagnóstico, estratégia, transformação, processos, jornadas, priorização e governança.';
+const jsonLd = JSON.stringify(generateWebPageJsonLd({
+  title: 'Estratégia & Transformação',
+  description,
+  url: `${SITE_URL}/solucoes/estrategia-transformacao`,
+}));
+---
+
+<SolutionLayout detail={detail} description={description} jsonLd={jsonLd} />

@@ -1,0 +1,217 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import Heading from '@/components/ui/Heading.astro';
+import Button from '@/components/ui/Button.astro';
+import { generateWebPageJsonLd } from '@/lib/json-ld';
+import { SITE_URL, APPROACH, TESE } from '@/lib/constants';
+
+const jsonLd = JSON.stringify(generateWebPageJsonLd({
+  title: 'Como Pensamos',
+  description: 'Compreensão antes da tecnologia. Direção antes da execução. Nosso método para transformar desafios complexos em resultados.',
+  url: `${SITE_URL}/como-pensamos`,
+}));
+
+const practicalSteps = [
+  { num: '01', verb: 'ENTENDER', phrase: 'O contexto antes da resposta.', icon: 'entender' },
+  { num: '02', verb: 'ENXERGAR', phrase: 'Oportunidades que nem sempre estão evidentes.', icon: 'enxergar' },
+  { num: '03', verb: 'ESCOLHER', phrase: 'Prioridades, caminhos e o que não fazer.', icon: 'escolher' },
+  { num: '04', verb: 'CONSTRUIR', phrase: 'Capacidades alinhadas à estratégia.', icon: 'construir' },
+  { num: '05', verb: 'REALIZAR', phrase: 'Execução com direção e responsabilidade.', icon: 'realizar' },
+  { num: '06', verb: 'EVOLUIR', phrase: 'Resultados sustentáveis exigem movimento contínuo.', icon: 'evoluir' },
+];
+
+const stepIconPaths: Record<string, string> = {
+  entender: `<circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" />`,
+  enxergar: `<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" /><circle cx="12" cy="12" r="3" />`,
+  escolher: `<circle cx="12" cy="12" r="9" /><path d="M16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88Z" />`,
+  construir: `<path d="m12 2 10 6-10 6L2 8 12 2Z" /><path d="m2 12 10 6 10-6" />`,
+  realizar: `<circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" />`,
+  evoluir: `<path d="m3 17 6-6 4 4 8-8" /><path d="M14 7h7v7" />`,
+};
+---
+
+<PageLayout
+  title="Como Pensamos"
+  description="Compreensão antes da tecnologia. Direção antes da execução. Nosso método para transformar desafios complexos em resultados."
+  jsonLd={jsonLd}
+>
+
+  {/* ═══════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════ */}
+  <Section class="pt-16 lg:pt-28 pb-16 lg:pb-24">
+    <Container>
+      <div class="max-w-4xl">
+        <Eyebrow text="Nossa abordagem" class="mb-8" />
+        <Heading tag="h1" size="hero" class="mb-8 text-balance">
+          O FUTURO NÃO COMEÇA NA EXECUÇÃO.<br />
+          <span class="text-venturare-green">COMEÇA NA COMPREENSÃO.</span>
+        </Heading>
+        <p class="text-body-xl text-venturare-muted/80 max-w-2xl leading-relaxed">
+          Antes de decidir o que fazer, precisamos entender o que realmente está acontecendo.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       SEIS PASSOS — jornada editorial
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mb-20">
+        <Eyebrow text="O caminho" />
+        <Heading tag="h2" size="h2" class="mb-6">
+          Seis movimentos, um percurso
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/80">
+          Da compreensão ao resultado. Cada etapa depende da anterior — e nenhuma pode ser pulada sem custo.
+        </p>
+      </div>
+
+      <div class="max-w-5xl">
+        {APPROACH.map((step, i) => (
+          <div class="relative pb-14 lg:pb-16 last:pb-0">
+            {i < APPROACH.length - 1 && (
+              <div class="absolute left-[31px] lg:left-[39px] top-16 bottom-0 w-px bg-gradient-to-b from-venturare-green/50 via-venturare-border/50 to-transparent" aria-hidden="true"></div>
+            )}
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+              <div class="md:col-span-4">
+                <div class="flex items-center gap-5">
+                  <div class="relative z-10 w-16 lg:w-20 h-16 lg:h-20 shrink-0">
+                    <div class="absolute inset-0 rounded-full border border-venturare-border/50"></div>
+                    <div class="absolute inset-1 bg-venturare-graphite rounded-full flex items-center justify-center">
+                      <span class="text-venturare-green font-display font-bold text-h4">{step.index}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <p class="text-caption text-venturare-muted/70 uppercase tracking-widest mb-2">{step.practice}</p>
+                    <h3 class="text-h3 text-venturare-white font-display font-semibold tracking-tight">{step.label}</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="md:col-span-8 md:pt-3">
+                <p class="text-h4 text-venturare-white font-display font-semibold tracking-tight mb-3">
+                  {step.headline}
+                </p>
+                <p class="text-body-lg text-venturare-muted/80 leading-relaxed">
+                  {step.text}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       TESE CENTRAL
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-4xl mx-auto text-center">
+        <Eyebrow text="Tese central" class="mb-8" />
+        <p class="text-thesis text-venturare-white tracking-tight text-balance">
+          &ldquo;{TESE.split('. ')[0].replace(/\.+$/, '')}.
+          <span class="block text-venturare-muted/85 mt-6 text-body-lg">{TESE.split('. ').slice(1).join('. ').replace(/\.+$/, '')}.&rdquo;</span>
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+{/* ═══════════════════════════════════════════════════
+       PRÁTICA — trajetória dos seis movimentos
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mx-auto text-center mb-16 lg:mb-20">
+        <Eyebrow text="Na prática" />
+        <Heading tag="h2" size="h2" class="mb-4">
+          Um vocabulário que orienta o trabalho
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/80">
+          Seis movimentos conectam compreensão, decisão e realização.
+        </p>
+      </div>
+
+      <div class="relative">
+        {/* Trajetória horizontal — desktop */}
+        <div class="hidden md:block absolute top-7 left-6 right-6 h-px bg-gradient-to-r from-transparent via-venturare-border/60 to-transparent" aria-hidden="true"></div>
+        {/* Trajetória vertical — mobile */}
+        <div class="md:hidden absolute left-6 top-4 bottom-4 w-px bg-gradient-to-b from-venturare-border/60 via-venturare-border/25 to-transparent" aria-hidden="true"></div>
+
+        <div class="relative z-10 grid grid-cols-1 md:grid-cols-6 gap-10 md:gap-5">
+          {practicalSteps.map((step) => (
+            <div class="group flex items-start gap-5 md:flex-col md:items-center md:text-center">
+              <div class="relative z-10 w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-full border border-venturare-border/40 bg-venturare-black flex items-center justify-center transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-venturare-green/40">
+                <svg class="w-5 h-5 md:w-6 md:h-6 text-venturare-muted transition-colors duration-300 group-hover:text-venturare-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={stepIconPaths[step.icon]} />
+              </div>
+              <div class="md:pt-6">
+                <p class="text-caption text-venturare-green-dim mb-2 md:mb-3">{step.num}</p>
+                <p class="text-h4 md:text-h3 text-venturare-white font-display font-semibold tracking-tight mb-2 md:mb-3 transition-colors duration-300 group-hover:text-venturare-green">
+                  {step.verb}
+                </p>
+                <p class="text-body text-venturare-muted/75 leading-relaxed max-w-[220px] md:max-w-[180px] transition-colors duration-300 group-hover:text-venturare-white/80">
+                  {step.phrase}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       PRINCÍPIO CENTRAL
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-4xl mx-auto text-center">
+        <Eyebrow text="Nosso princípio" class="mb-10" />
+        <Heading tag="h2" size="h2" class="text-balance">
+          NEGÓCIO ANTES DA <span class="text-venturare-green">EXECUÇÃO.</span>
+          <br />
+          ESTRATÉGIA ANTES DA <span class="text-venturare-green">TECNOLOGIA.</span>
+        </Heading>
+        <div class="flex items-center justify-center gap-4 mt-10 mb-8" aria-hidden="true">
+          <span class="h-px w-10 bg-gradient-to-r from-transparent to-venturare-green/40"></span>
+          <span class="w-1.5 h-1.5 rotate-45 bg-venturare-green/50"></span>
+          <span class="h-px w-10 bg-gradient-to-l from-transparent to-venturare-green/40"></span>
+        </div>
+        <p class="text-body-lg text-venturare-muted/80 leading-relaxed">
+          A tecnologia é meio.
+          <br />
+          A execução transforma direção em resultado.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       CTA
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl">
+    <Container>
+      <div class="max-w-3xl mx-auto text-center">
+        <Heading tag="h2" size="h2" class="mb-6 text-balance">
+          TEM UMA DECISÃO IMPORTANTE PELA FRENTE?
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/80 mb-10">
+          Vamos começar pela compreensão.
+        </p>
+        <div class="flex justify-center">
+          <Button href="/conversar" variant="primary" size="lg">
+            Conversar
+            <span class="ml-1">&rarr;</span>
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+</PageLayout>

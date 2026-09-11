@@ -1,0 +1,40 @@
+---
+import SEO from '@/components/seo/SEO.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import SkipLink from '@/components/navigation/SkipLink.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalUrl?: string;
+  jsonLd?: string;
+}
+
+const { title, description, image, canonicalUrl, jsonLd } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      canonicalUrl={canonicalUrl}
+    />
+    {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
+  </head>
+  <body class="min-h-screen flex flex-col bg-background text-foreground">
+    <SkipLink />
+    <Header />
+
+    <main id="main-content" class="flex-1 w-full">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

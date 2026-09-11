@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import Heading from '@/components/ui/Heading.astro';
+import { NAV_ITEMS } from '@/lib/constants';
+
+const title = 'Página não encontrada';
+const description = 'A página que você procura não está aqui. Mas ainda podemos voltar para a direção certa.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Section class="min-h-[70vh] flex items-center">
+    <Container>
+      <div class="max-w-3xl">
+        <Eyebrow text={String('404').padStart(3, '0')} class="mb-8" />
+        <Heading tag="h1" size="hero" class="mb-8 text-balance">
+          PARECE QUE SAÍMOS DA ROTA.
+        </Heading>
+        <p class="text-body-xl text-venturare-muted/80 max-w-2xl leading-relaxed mb-12">
+          {description}
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="/" class="btn btn-primary">Voltar para o início</a>
+          <a href="/conversar" class="btn btn-secondary">Conversar com a Venturare</a>
+        </div>
+
+        {NAV_ITEMS.length > 0 && (
+          <nav aria-label="Mapa do site" class="mt-16">
+            <p class="text-caption uppercase tracking-widest text-venturare-muted/70 mb-4">O que você procura pode estar em</p>
+            <ul class="flex flex-wrap gap-x-6 gap-y-3">
+              {NAV_ITEMS.map((item) => (
+                <li>
+                  <a href={item.href} class="text-body text-venturare-muted hover:text-venturare-green transition-colors duration-150">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>

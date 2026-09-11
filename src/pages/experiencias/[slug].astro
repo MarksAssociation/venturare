@@ -1,0 +1,77 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import Breadcrumb from '@/components/navigation/Breadcrumb.astro';
+import CTA from '@/components/ui/CTA.astro';
+import { getCollection, render } from 'astro:content';
+import { generateWebPageJsonLd } from '@/lib/json-ld';
+import { SITE_URL } from '@/lib/constants';
+
+export async function getStaticPaths() {
+  const experiences = await getCollection('experiences');
+  return experiences
+    .filter((exp) => !exp.data.confidential)
+    .map((experience) => ({
+      params: { slug: experience.id },
+      props: { experience },
+    }));
+}
+
+type Props = Awaited<ReturnType<typeof getStaticPaths>>[number]['props'];
+
+const { experience } = Astro.props;
+const { title, description, industry } = experience.data;
+const url = `${SITE_URL}/experiencias/${experience.id}/`;
+
+const webPageJsonLd = generateWebPageJsonLd({ title, description, url });
+const jsonLd = JSON.stringify([webPageJsonLd]);
+const { Content } = await render(experience);
+---
+
+<PageLayout
+  title={title}
+  description={description}
+  canonicalUrl={url}
+  jsonLd={jsonLd}
+>
+
+  <Section class="pt-16 lg:pt-24 pb-16 lg:pb-24">
+    <Container>
+      <Breadcrumb
+        items={[
+          { label: 'Experiências', href: '/experiencias' },
+          { label: title },
+        ]}
+        class="mb-12"
+      />
+
+      <div class="max-w-4xl">
+        <Eyebrow text={industry} class="mb-6" />
+        <h1 class="text-h1 text-venturare-white mb-6">{title}</h1>
+        <p class="text-body-xl text-venturare-muted/85 leading-relaxed">
+          {description}
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  <Section padding="xl" border>
+    <Container>
+      <div class="prose-content max-w-3xl mx-auto">
+        <Content />
+      </div>
+    </Container>
+  </Section>
+
+  <CTA
+    title="CASOS COMO ESTE COMEÇAM COM UMA CONVERSA."
+    sub="Se o seu desafio pede compreensão antes da solução, vamos começar por aí."
+    primaryLabel="Conversar"
+    primaryHref="/conversar"
+    secondaryLabel="Ver outras experiências"
+    secondaryHref="/experiencias"
+  />
+
+</PageLayout>

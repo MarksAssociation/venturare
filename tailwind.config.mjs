@@ -1,0 +1,96 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Manrope', 'system-ui', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        button: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        venturare: {
+          black: '#080A0B',
+          graphite: '#111518',
+          'dark-navy': '#0B1B26',
+          navy: '#123142',
+          green: '#2EB837',
+          'green-dim': '#259A2D',
+          white: '#F5F7F6',
+          muted: '#9BA5A8',
+          border: '#263237',
+          copper: '#B8895A',
+        },
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+        '128': '32rem',
+        '160': '40rem',
+      },
+      maxWidth: {
+        'venturare': '1280px',
+        'prose': '72ch',
+      },
+      fontSize: {
+        'display': ['clamp(2.375rem, 6.11vw, 5.5rem)', { lineHeight: '0.98', letterSpacing: '-0.04em', fontWeight: '800' }],
+        'hero': ['clamp(2.6rem, 4.44vw, 4rem)', { lineHeight: '1.02', letterSpacing: '-0.03em', fontWeight: '700' }],
+        'h1': ['clamp(2.25rem, 3.89vw, 3.5rem)', { lineHeight: '1.06', letterSpacing: '-0.025em', fontWeight: '700' }],
+        'thesis': ['clamp(2rem, 3.33vw, 3rem)', { lineHeight: '1.1', letterSpacing: '-0.025em', fontWeight: '700' }],
+        'h2': ['clamp(1.75rem, 2.78vw, 2.5rem)', { lineHeight: '1.12', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'h3': ['clamp(1.25rem, 1.67vw, 1.75rem)', { lineHeight: '1.18', letterSpacing: '-0.01em', fontWeight: '600' }],
+        'h4': ['clamp(1.125rem, 1.39vw, 1.375rem)', { lineHeight: '1.25', letterSpacing: '-0.005em', fontWeight: '600' }],
+        'body-xl': ['clamp(1.25rem, 1.39vw, 1.5rem)', { lineHeight: '1.55' }],
+        'body-lg': ['clamp(1.125rem, 1.11vw, 1.25rem)', { lineHeight: '1.6' }],
+        'body': ['clamp(1rem, 0.83vw, 1.125rem)', { lineHeight: '1.7' }],
+        'small': ['clamp(0.875rem, 0.69vw, 0.9375rem)', { lineHeight: '1.6' }],
+        'caption': ['clamp(0.75rem, 0.56vw, 0.8125rem)', { lineHeight: '1.5' }],
+        'eyebrow': ['clamp(0.6875rem, 0.56vw, 0.75rem)', { lineHeight: '1.5', letterSpacing: '0.12em', fontWeight: '600' }],
+        'button': ['clamp(0.875rem, 0.69vw, 0.9375rem)', { lineHeight: '1.4', letterSpacing: '0.02em', fontWeight: '600' }],
+      },
+      borderRadius: {
+        'sm': '0.25rem',
+        'DEFAULT': '0.375rem',
+        'md': '0.5rem',
+        'lg': '0.75rem',
+        'xl': '1rem',
+      },
+      transitionDuration: {
+        '150': '150ms',
+        '200': '200ms',
+        '300': '300ms',
+        '500': '500ms',
+      },
+      transitionTimingFunction: {
+        'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+      },
+      keyframes: {
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        'fade-in-up': {
+          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'fade-in-down': {
+          '0%': { opacity: '0', transform: 'translateY(-8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'slide-in-right': {
+          '0%': { opacity: '0', transform: 'translateX(-12px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        'fade-in': 'fade-in 0.4s ease-out forwards',
+        'fade-in-up': 'fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        'fade-in-down': 'fade-in-down 0.3s ease-out forwards',
+        'slide-in-right': 'slide-in-right 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+      },
+    },
+  },
+  plugins: [],
+};

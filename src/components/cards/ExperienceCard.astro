@@ -1,0 +1,34 @@
+---
+import Badge from '@/components/ui/Badge.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  industry: string;
+  href: string;
+  confidential?: boolean;
+  class?: string;
+}
+
+const { title, description, industry, href, confidential = false, class: className = '' } = Astro.props;
+---
+
+<a href={href} class:list={['group block card-hover', className]}>
+  <div class="flex flex-col h-full">
+    <div class="flex items-center gap-2 mb-4">
+      <Badge text="Experiência" variant="category" />
+      {confidential && <Badge text="Confidencial" variant="tag" />}
+    </div>
+    <p class="text-caption text-venturare-muted/70 uppercase tracking-wider mb-2">{industry}</p>
+    <h3 class="text-h4 text-venturare-white mb-3 group-hover:text-venturare-green transition-colors duration-200">
+      {title}
+    </h3>
+    <p class="text-small text-venturare-muted/85 leading-relaxed flex-1 line-clamp-3">
+      {description}
+    </p>
+    <div class="mt-6 flex items-center gap-2 text-small text-venturare-muted/70 group-hover:text-venturare-green transition-colors duration-200">
+      <span>Ver experiência</span>
+      <span class="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+    </div>
+  </div>
+</a>

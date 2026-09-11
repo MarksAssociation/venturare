@@ -1,0 +1,146 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import Heading from '@/components/ui/Heading.astro';
+import CTA from '@/components/ui/CTA.astro';
+import { generateWebPageJsonLd } from '@/lib/json-ld';
+import { SITE_URL, SOLUTIONS, APPROACH } from '@/lib/constants';
+
+const jsonLd = JSON.stringify(generateWebPageJsonLd({
+  title: 'Soluções',
+  description: 'Três domínios de atuação estratégica para transformar desafios complexos em resultados concretos.',
+  url: `${SITE_URL}/solucoes`,
+}));
+---
+
+<PageLayout
+  title="Soluções"
+  description="Três domínios de atuação estratégica para transformar desafios complexos em resultados concretos."
+  jsonLd={jsonLd}
+>
+
+  {/* ═══════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════ */}
+  <Section class="pt-16 lg:pt-28 pb-16 lg:pb-24">
+    <Container>
+      <div class="max-w-4xl">
+        <Eyebrow text="Soluções" class="mb-8" />
+        <Heading tag="h1" size="hero" class="mb-8 text-balance">
+          TRANSFORMAÇÃO EXIGE MAIS DO QUE UMA BOA SOLUÇÃO.
+        </Heading>
+        <p class="text-body-xl text-venturare-muted/80 max-w-2xl leading-relaxed mb-8">
+          Exige compreensão, direção e capacidade para fazer acontecer.
+        </p>
+        <p class="text-body-lg text-venturare-muted/80 max-w-2xl leading-relaxed">
+          A Venturare conecta estratégia, tecnologia e execução para transformar desafios complexos em movimentos claros e resultados sustentáveis.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       PERSPECTIVA
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-h2 font-display font-bold text-venturare-white tracking-tight text-balance">
+          O DESAFIO RARAMENTE ESTÁ ISOLADO.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       DOMÍNIOS — índice editorial
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mb-16">
+        <Eyebrow text="Domínios de atuação" />
+        <Heading tag="h2" size="h2" class="mb-6">
+          Três domínios, uma mesma direção
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/80">
+          Cada domínio responde a uma etapa do percurso — e sustenta as demais.
+        </p>
+      </div>
+
+      <div class="max-w-5xl divide-y divide-venturare-border/20">
+        {SOLUTIONS.map((solution, i) => (
+          <a
+            href={solution.href}
+            class="group block py-12 lg:py-16"
+            aria-label={`${solution.title} — ver detalhes`}
+          >
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-baseline">
+              <div class="lg:col-span-2">
+                <span class="text-h1 font-display font-extrabold tracking-tighter text-venturare-muted/35 group-hover:text-venturare-green/60 transition-colors duration-300">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              </div>
+              <div class="lg:col-span-4">
+                <span class="text-caption text-venturare-green/60 uppercase tracking-widest">
+                  Domínio {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 class="text-h3 text-venturare-white mt-2 font-display font-semibold tracking-tight group-hover:text-venturare-green transition-colors duration-300">
+                  {solution.title}
+                </h3>
+              </div>
+              <div class="lg:col-span-5 lg:col-start-8">
+                <p class="text-body-lg text-venturare-muted/80 leading-relaxed">
+                  {solution.description}
+                </p>
+              </div>
+              <div class="lg:col-span-1 hidden lg:flex justify-end">
+                <span class="text-body text-venturare-green/70 group-hover:text-venturare-green transition-colors duration-300">
+                  &rarr;
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       JOURNEY
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <Eyebrow text="O percurso" />
+          <Heading tag="h2" size="h2" class="mb-6">
+            Um mesmo caminho orienta cada solução
+          </Heading>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
+          {APPROACH.map((step) => (
+            <div class="text-center">
+              <p class="text-caption text-venturare-green/70 uppercase tracking-widest mb-3">{step.index}</p>
+              <p class="text-button text-venturare-white font-display font-semibold">{step.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       CTA
+       ═══════════════════════════════════════════════════ */}
+  <CTA
+    title="COMO PODEMOS AJUDAR É UMA PERGUNTA QUE SÓ FAZ SENTIDO APÓS COMPREENDER O DESAFIO."
+    sub="Vamos começar pela compreensão."
+    primaryLabel="Conversar"
+    primaryHref="/conversar"
+    secondaryLabel="Conhecer nossa abordagem"
+    secondaryHref="/como-pensamos"
+  />
+
+</PageLayout>

@@ -1,0 +1,30 @@
+{
+  "name": "venturare",
+  "version": "1.0.0",
+  "description": "Venturare — Transformando Visão em Resultados",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "keywords": [],
+  "author": "Venturare",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/rss": "^4.0.15",
+    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/vercel": "^9.0.4",
+    "astro": "^5.18.0",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.10.0"
+  }
+}

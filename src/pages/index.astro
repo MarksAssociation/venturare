@@ -1,0 +1,334 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import Heading from '@/components/ui/Heading.astro';
+import Button from '@/components/ui/Button.astro';
+import DomainCard from '@/components/cards/DomainCard.astro';
+import { SITE_DESCRIPTION, SOLUTIONS } from '@/lib/constants';
+import { generateOrganizationJsonLd, generateWebSiteJsonLd } from '@/lib/json-ld';
+
+const jsonLd = JSON.stringify([
+  generateOrganizationJsonLd(),
+  generateWebSiteJsonLd(),
+]);
+
+const domainIcons = [
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88Z"/></svg>`,
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 6-10 6L2 8 12 2Z"/><path d="m2 12 10 6 10-6"/><path d="m2 18 10 6 10-6"/></svg>`,
+  `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 17 6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>`,
+];
+
+const approachSteps = [
+  { label: 'Compreensão', description: 'Entender o negócio antes de qualquer solução' },
+  { label: 'Visão', description: 'Enxergar o horizonte e as possibilidades' },
+  { label: 'Estratégia', description: 'Definir o caminho com clareza' },
+  { label: 'Tecnologia', description: 'Escolher as ferramentas certas' },
+  { label: 'Execução', description: 'Implementar com consistência' },
+  { label: 'Resultados', description: 'Transformar decisão em resultado concreto' },
+];
+---
+
+<BaseLayout
+  title="Transformando Visão em Resultados"
+  description={SITE_DESCRIPTION}
+  jsonLd={jsonLd}
+>
+
+  {/* ═══════════════════════════════════════════════════════════════
+       1. HERO
+       ═══════════════════════════════════════════════════════════════ */}
+  <section id="hero" class="relative min-h-[85vh] flex items-center pt-16 lg:pt-20 overflow-hidden">
+    <Container class="relative z-10">
+      <div class="max-w-5xl">
+        <Heading tag="h1" size="display" class="mb-8 w-fit max-w-full text-balance lg:max-w-[60rem]">
+          TRANSFORMANDO VISÃO<br /> EM RESULTADOS
+        </Heading>
+        <p class="text-body-xl text-venturare-muted/80 max-w-2xl mb-12 leading-relaxed">
+          Conectamos estratégia, tecnologia e execução para transformar desafios complexos em resultados concretos.
+        </p>
+        <div class="flex flex-wrap items-center gap-4">
+          <Button href="/conversar" variant="primary" size="lg">
+            Conversar
+            <span class="ml-1">&rarr;</span>
+          </Button>
+          <Button href="/como-pensamos" variant="secondary" size="lg">
+            Conhecer nossa abordagem
+            <span class="ml-1">&rarr;</span>
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+
+  {/* ═══════════════════════════════════════════════════════════════
+       2. COMPREENSÃO
+       ═══════════════════════════════════════════════════════════════ */}
+  <Section id="compreensao" padding="xl" border>
+    <Container>
+      <div class="max-w-4xl mx-auto text-center">
+        <Eyebrow text="Nossa abordagem" />
+        <Heading tag="h2" size="h2" class="mb-8 text-balance">
+          NÃO COMEÇAMOS PELA TECNOLOGIA.<br />
+          <span class="text-venturare-green">COMEÇAMOS PELA COMPREENSÃO.</span>
+        </Heading>
+        <div class="max-w-2xl mx-auto space-y-6 text-left">
+          <p class="text-body-lg text-venturare-muted/80 leading-relaxed">
+            Toda transformação começa antes da solução.
+          </p>
+          <p class="text-body text-venturare-muted/80 leading-relaxed">
+            Antes de construir, é preciso entender. Antes de escolher uma tecnologia, é preciso compreender o negócio, o contexto, os desafios e as oportunidades.
+          </p>
+          <p class="text-body text-venturare-muted/80 leading-relaxed">
+            O maior risco não é tomar a decisão errada. É tomar a decisão certa sobre uma realidade mal compreendida.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+
+  {/* ═══════════════════════════════════════════════════════════════
+       3. PROBLEMA
+       ═══════════════════════════════════════════════════════════════ */}
+  <Section id="problema" padding="xl" border>
+    <Container>
+      <div class="max-w-4xl mx-auto text-center">
+        <Eyebrow text="O problema" />
+        <Heading tag="h2" size="hero" class="mb-8 text-balance">
+          TECNOLOGIA SEM DIREÇÃO<br />
+          <span class="text-venturare-muted/80">ACELERA O CAMINHO ERRADO.</span>
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/75 max-w-2xl mx-auto leading-relaxed">
+          Organizações investem em ferramentas sem clareza de direção. A velocidade da execução sem estratégia gera desperdício e resultados abaixo do potencial.
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+
+  {/* ═══════════════════════════════════════════════════════════════
+       4. ABORDAGEM — Jornada visual
+       ═══════════════════════════════════════════════════════════════ */}
+  <Section id="abordagem" padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mx-auto text-center mb-20">
+        <Eyebrow text="O caminho" />
+        <Heading tag="h2" size="h2" class="mb-6">
+          Nossa abordagem
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/80">
+          Um percurso claro, da compreensão ao resultado.
+        </p>
+      </div>
+
+      {/* Jornada — composição visual proprietária */}
+      <div class="max-w-5xl mx-auto relative">
+        {/* Steps */}
+        <div class="relative grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
+          {approachSteps.map((step, i) => (
+            <div class="relative text-center group">
+              {/* Nó da jornada */}
+              <div class="relative z-10 w-14 h-14 mx-auto mb-5">
+                <div class="absolute inset-0 rounded-full border border-venturare-border/40 transition-all duration-500 group-hover:border-venturare-green/60 group-hover:scale-110"></div>
+                <div class="absolute inset-1 rounded-full bg-venturare-graphite flex items-center justify-center transition-all duration-500 group-hover:bg-venturare-graphite/80">
+                  <span class="text-venturare-green/80 font-display font-bold text-body transition-colors duration-300 group-hover:text-venturare-green">
+                    {i + 1}
+                  </span>
+                </div>
+              </div>
+
+              {/* Label */}
+              <p class="text-button text-venturare-white mb-2 font-display font-semibold tracking-tight">
+                {step.label}
+              </p>
+
+              {/* Descrição */}
+              <p class="text-small text-venturare-muted/70 leading-relaxed hidden md:block max-w-[150px] mx-auto">
+                {step.description}
+              </p>
+
+              {/* Conector visual — desktop */}
+              {i < approachSteps.length - 1 && (
+                <div class="hidden lg:block absolute top-7 left-[calc(50%+32px)] w-[calc(100%-64px)]">
+                  <div class="h-px bg-gradient-to-r from-venturare-green/30 via-venturare-border/50 to-venturare-green/30"></div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </Container>
+  </Section>
+
+
+  {/* ═══════════════════════════════════════════════════════════════
+       5. SOLUÇÕES — Três domínios de atuação
+       ═══════════════════════════════════════════════════════════════ */}
+  <Section id="solucoes" padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mb-16 lg:mb-20">
+        <Eyebrow text="Soluções" />
+        <Heading tag="h2" size="h2" class="mb-6">
+          Três domínios de atuação
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/80">
+          Cada domínio responde a um tipo de desafio real das organizações.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {SOLUTIONS.map((solution, i) => (
+          <DomainCard
+            index={i + 1}
+            title={solution.title}
+            description={solution.description}
+            href={solution.href}
+            icon={domainIcons[i]}
+          />
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+
+  {/* ═══════════════════════════════════════════════════════════════
+       6. EXPERIÊNCIAS — Composição intencional
+       ═══════════════════════════════════════════════════════════════ */}
+  <Section id="experiencias" padding="xl" border>
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-11 gap-12 lg:gap-20 items-center">
+        <div class="lg:col-span-6">
+          <Eyebrow text="Experiências" />
+          <Heading tag="h2" size="h2" class="mb-6 text-balance">
+            Desafios complexos.<br />
+            <span class="text-venturare-green">Decisões mais claras.</span>
+          </Heading>
+          <p class="text-body-lg text-venturare-muted/80 mb-10 leading-relaxed">
+            Experiências construídas na interseção entre estratégia, tecnologia e execução.
+          </p>
+          <Button href="/experiencias" variant="text">
+            Ver experiências
+            <span class="ml-1">&rarr;</span>
+          </Button>
+        </div>
+        <div class="lg:col-span-5">
+          <div class="rounded-lg border border-venturare-border/20 bg-venturare-graphite/40 p-8 lg:p-10">
+              <p class="text-caption text-venturare-muted/70 uppercase tracking-widest mb-6">
+              Contextos de atuação
+            </p>
+            <div class="h-px bg-venturare-border/25 mb-8"></div>
+            <div class="space-y-8">
+              <div class="flex items-baseline gap-5">
+                <span class="text-small font-display font-semibold text-venturare-green/80">01</span>
+                <p class="text-body text-venturare-white/80 leading-snug">Transformações que exigem precisão</p>
+              </div>
+              <div class="flex items-baseline gap-5">
+                <span class="text-small font-display font-semibold text-venturare-green/80">02</span>
+                <p class="text-body text-venturare-white/80 leading-snug">Decisões de tecnologia em escala</p>
+              </div>
+              <div class="flex items-baseline gap-5">
+                <span class="text-small font-display font-semibold text-venturare-green/80">03</span>
+                <p class="text-body text-venturare-white/80 leading-snug">Estratégia conectada à execução</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+
+  {/* ═══════════════════════════════════════════════════════════════
+       7. INSIGHTS — Composição intencional
+       ═══════════════════════════════════════════════════════════════ */}
+  <Section id="insights" padding="xl" border>
+    <Container>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-5 order-2 lg:order-1">
+          <div class="relative aspect-[4/3] rounded-lg overflow-hidden border border-venturare-border/15">
+            <div class="absolute inset-0 bg-gradient-to-bl from-venturare-graphite/70 via-venturare-navy/40 to-venturare-black/60"></div>
+            {/* Composição editorial */}
+            <div class="absolute inset-0 p-6 lg:p-8 flex flex-col justify-between">
+              <div class="flex items-start justify-between">
+                <span class="text-caption text-venturare-green/60 uppercase tracking-widest">
+                  Perspectiva
+                </span>
+              </div>
+              <p class="text-h3 font-serif italic text-venturare-white/85 leading-relaxed">
+                &ldquo;Antes de decidir, compreenda.
+                <span class="block text-venturare-muted/80 mt-3 text-body-lg">Antes de executar, direção.&rdquo;</span>
+              </p>
+              <p class="text-caption text-venturare-muted/70 uppercase tracking-widest">
+                Reflexões em preparação
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-7 order-1 lg:order-2">
+          <Eyebrow text="Insights" />
+          <Heading tag="h2" size="h2" class="mb-6 text-balance">
+            Pensamentos para quem precisa decidir antes de executar.
+          </Heading>
+          <p class="text-body text-venturare-muted/80 mb-8 leading-relaxed">
+            Ideias, reflexões e perspectivas sobre estratégia, tecnologia, transformação e execução.
+          </p>
+          <Button href="/insights" variant="text">
+            Ver insights
+            <span class="ml-1">&rarr;</span>
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+
+  {/* ═══════════════════════════════════════════════════════════════
+       8. INSTITUCIONAL
+       ═══════════════════════════════════════════════════════════════ */}
+  <Section id="institucional" padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mx-auto text-center">
+        <Eyebrow text="Sobre a Venturare" />
+        <Heading tag="h2" size="h2" class="mb-8 text-balance">
+          Uma consultoria construída para aproximar estratégia e execução.
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/85 leading-relaxed mb-8">
+          Venturare remete a uma jornada consciente em direção ao futuro: compreender o terreno, enxergar o horizonte, escolher o caminho e avançar.
+        </p>
+        <p class="text-body-xl text-venturare-white/85 leading-relaxed mb-12">
+          Estratégia antes da tecnologia. Negócio antes da execução.
+        </p>
+        <Button href="/sobre" variant="secondary">
+          Conheça a Venturare
+          <span class="ml-1">&rarr;</span>
+        </Button>
+      </div>
+    </Container>
+  </Section>
+
+
+  {/* ═══════════════════════════════════════════════════════════════
+       9. CTA FINAL
+       ═══════════════════════════════════════════════════════════════ */}
+  <Section id="cta-final" padding="xl">
+    <Container>
+      <div class="max-w-3xl mx-auto text-center">
+        <Heading tag="h2" size="h2" class="mb-8 text-balance">
+          O FUTURO NÃO COMEÇA NA EXECUÇÃO.<br />
+          <span class="text-venturare-green">COMEÇA NA DIREÇÃO QUE ESCOLHEMOS SEGUIR.</span>
+        </Heading>
+        <div class="flex justify-center">
+          <Button href="/conversar" variant="primary" size="lg">
+            Conversar com a Venturare
+            <span class="ml-1">&rarr;</span>
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+</BaseLayout>

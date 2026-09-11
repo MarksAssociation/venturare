@@ -1,0 +1,22 @@
+---
+interface Props {
+  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span';
+  size?: 'display' | 'hero' | 'h1' | 'h2' | 'h3' | 'h4';
+  class?: string;
+}
+
+const { tag: Tag = 'h2', size, class: className = '' } = Astro.props;
+
+const sizeClasses = {
+  display: 'text-display font-display font-extrabold tracking-tight',
+  hero: 'text-hero font-display font-bold tracking-tight',
+  h1: 'text-h1 font-display font-bold tracking-tight',
+  h2: 'text-h2 font-display font-semibold tracking-tight',
+  h3: 'text-h3 font-display font-semibold',
+  h4: 'text-h4 font-display font-semibold',
+};
+---
+
+<Tag class:list={[size ? sizeClasses[size] : '', className]}>
+  <slot />
+</Tag>

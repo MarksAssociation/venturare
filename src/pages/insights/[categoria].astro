@@ -1,0 +1,86 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import Breadcrumb from '@/components/navigation/Breadcrumb.astro';
+import InsightCard from '@/components/cards/InsightCard.astro';
+import { getCollection } from 'astro:content';
+import { generateWebPageJsonLd } from '@/lib/json-ld';
+import { SITE_URL, INSIGHT_CATEGORIES } from '@/lib/constants';
+
+export function getStaticPaths() {
+  return INSIGHT_CATEGORIES.map((cat) => ({
+    params: { categoria: cat.id },
+    props: { category: cat },
+  }));
+}
+
+type Props = {
+  category: (typeof INSIGHT_CATEGORIES)[number];
+};
+
+const { category } = Astro.props;
+const posts = (await getCollection('insights'))
+  .filter((post) => !post.data.draft && post.data.category === category.id)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const jsonLd = JSON.stringify(generateWebPageJsonLd({
+  title: category.label,
+  description: category.description,
+  url: `${SITE_URL}/insights/${category.id}`,
+}));
+---
+
+<PageLayout
+  title={`Insights · ${category.label}`}
+  description={category.description}
+  jsonLd={jsonLd}
+>
+
+  <Section class="pt-16 lg:pt-24 pb-16 lg:pb-24">
+    <Container>
+      <Breadcrumb
+        items={[
+          { label: 'Insights', href: '/insights' },
+          { label: category.label },
+        ]}
+        class="mb-12"
+      />
+      <div class="max-w-3xl">
+        <Eyebrow text="Categoria" class="mb-6" />
+        <h1 class="text-h1 text-venturare-white mb-6">{category.label}</h1>
+        <p class="text-body-xl text-venturare-muted/85">{category.description}</p>
+      </div>
+    </Container>
+  </Section>
+
+  {posts.length > 0 ? (
+    <Section padding="xl" border>
+      <Container>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post) => (
+            <InsightCard
+              title={post.data.title}
+              description={post.data.description}
+              category={post.data.category}
+              date={post.data.date}
+              readingTime={post.data.readingTime}
+              tags={post.data.tags}
+              href={`/insights/${post.data.category}/${post.id.split('/').pop()}/`}
+            />
+          ))}
+        </div>
+      </Container>
+    </Section>
+  ) : (
+    <Section padding="xl" border>
+      <Container>
+        <p class="text-body-lg text-venturare-muted/70">
+          Publicações em preparação para esta categoria. Nenhum artigo é publicado antes de estar concluído.
+        </p>
+      </Container>
+    </Section>
+  )}
+
+</PageLayout>

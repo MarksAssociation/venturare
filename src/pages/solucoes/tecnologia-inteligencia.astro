@@ -1,0 +1,15 @@
+---
+import SolutionLayout from '@/layouts/SolutionLayout.astro';
+import { SOLUTION_DETAILS, SITE_URL } from '@/lib/constants';
+import { generateWebPageJsonLd } from '@/lib/json-ld';
+
+const detail = SOLUTION_DETAILS['tecnologia-inteligencia'];
+const description = 'Transformar direção em possibilidades reais. Arquitetura, produtos digitais, automação, dados, inteligência e integração.';
+const jsonLd = JSON.stringify(generateWebPageJsonLd({
+  title: 'Tecnologia & Inteligência',
+  description,
+  url: `${SITE_URL}/solucoes/tecnologia-inteligencia`,
+}));
+---
+
+<SolutionLayout detail={detail} description={description} jsonLd={jsonLd} />

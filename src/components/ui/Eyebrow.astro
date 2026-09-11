@@ -1,0 +1,20 @@
+---
+interface Props {
+  text: string;
+  class?: string;
+  color?: 'green' | 'muted' | 'white' | 'dark';
+}
+
+const { text, class: className = '', color = 'green' } = Astro.props;
+
+const colorClasses = {
+  green: 'text-venturare-green',
+  muted: 'text-venturare-muted',
+  white: 'text-venturare-white',
+  dark: 'text-venturare-green-dim',
+};
+---
+
+<span class:list={['inline-block text-eyebrow font-semibold uppercase tracking-widest mb-4', colorClasses[color], className]}>
+  {text}
+</span>

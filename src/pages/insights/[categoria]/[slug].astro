@@ -1,0 +1,116 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import Breadcrumb from '@/components/navigation/Breadcrumb.astro';
+import ReadingTime from '@/components/ui/ReadingTime.astro';
+import CTA from '@/components/ui/CTA.astro';
+import { getCollection, render } from 'astro:content';
+import { getCategoryLabel, formatDate } from '@/lib/utils';
+import { generateWebPageJsonLd, generateArticleJsonLd, generateBreadcrumbJsonLd } from '@/lib/json-ld';
+import { SITE_URL } from '@/lib/constants';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('insights')).filter((post) => !post.data.draft);
+  return posts.map((post) => ({
+    params: {
+      categoria: post.data.category,
+      slug: post.id.split('/').pop(),
+    },
+    props: { post },
+  }));
+}
+
+type Props = {
+  post: Awaited<ReturnType<typeof getCollection<'insights'>>>[number];
+};
+
+const { post } = Astro.props;
+const { title, description, date, category, tags } = post.data;
+const url = `${SITE_URL}/insights/${category}/${post.id.split('/').pop()}/`;
+
+const webPageJsonLd = generateWebPageJsonLd({ title, description, url });
+const articleJsonLd = generateArticleJsonLd({
+  title,
+  description,
+  url,
+  datePublished: date.toISOString(),
+  author: post.data.author,
+});
+const breadcrumbJsonLd = generateBreadcrumbJsonLd([
+  { name: 'Início', url: `${SITE_URL}/` },
+  { name: 'Insights', url: `${SITE_URL}/insights` },
+  { name: getCategoryLabel(category), url: `${SITE_URL}/insights/${category}` },
+  { name: title, url },
+]);
+const jsonLd = JSON.stringify([webPageJsonLd, articleJsonLd, breadcrumbJsonLd]);
+
+const { Content } = await render(post);
+---
+
+<PageLayout
+  title={title}
+  description={description}
+  canonicalUrl={url}
+  jsonLd={jsonLd}
+>
+
+  <Section class="pt-16 lg:pt-24 pb-16 lg:pb-24">
+    <Container>
+      <Breadcrumb
+        items={[
+          { label: 'Insights', href: '/insights' },
+          { label: getCategoryLabel(category), href: `/insights/${category}` },
+          { label: title },
+        ]}
+        class="mb-12"
+      />
+
+      <div class="max-w-3xl">
+        <Eyebrow text={getCategoryLabel(category)} class="mb-6" />
+        <h1 class="text-h1 text-venturare-white mb-6">{title}</h1>
+        <p class="text-body-xl text-venturare-muted/85 leading-relaxed mb-8">
+          {description}
+        </p>
+        <div class="flex flex-wrap items-center gap-3 text-caption text-venturare-muted/70">
+          <time datetime={date.toISOString()}>{formatDate(date)}</time>
+          <span class="text-venturare-border">|</span>
+          <span>{post.data.author}</span>
+          <span class="text-venturare-border">|</span>
+          <ReadingTime minutes={post.data.readingTime} />
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section padding="xl" border>
+    <Container>
+      <article class="prose-content max-w-3xl mx-auto">
+        <Content />
+      </article>
+    </Container>
+  </Section>
+
+  {tags && tags.length > 0 && (
+    <Section class="pb-16" border>
+      <Container>
+        <div class="max-w-3xl mx-auto flex flex-wrap gap-2">
+          {tags.map((tag: string) => (
+            <span class="text-caption text-venturare-muted/70">#{tag}</span>
+          ))}
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  <CTA
+    title="O QUE ESTE TEMA SIGNIFICA NA SUA REALIDADE?"
+    sub="Antes de uma resposta pronta, vale a compreensão do contexto."
+    primaryLabel="Conversar"
+    primaryHref="/conversar"
+    secondaryLabel="Todos os insights"
+    secondaryHref="/insights"
+  />
+
+</PageLayout>

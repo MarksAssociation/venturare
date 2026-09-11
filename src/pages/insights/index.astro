@@ -1,0 +1,195 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import Container from '@/components/ui/Container.astro';
+import Section from '@/components/ui/Section.astro';
+import Eyebrow from '@/components/ui/Eyebrow.astro';
+import Heading from '@/components/ui/Heading.astro';
+import CTA from '@/components/ui/CTA.astro';
+import InsightCard from '@/components/cards/InsightCard.astro';
+import { getCollection } from 'astro:content';
+import { generateWebPageJsonLd } from '@/lib/json-ld';
+import {
+  SITE_URL,
+  INSIGHT_HERO,
+  INSIGHT_SUB,
+  INSIGHT_FEATURED_EYEBROW,
+  INSIGHT_CATEGORIES,
+  INSIGHT_TRANSITION,
+  INSIGHT_EDITORIAL_TITLES,
+} from '@/lib/constants';
+
+const insights = (await getCollection('insights'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const featured = insights.find((post) => post.data.featured);
+
+const jsonLd = JSON.stringify(generateWebPageJsonLd({
+  title: 'Insights',
+  description: 'Perspectivas sobre estratégia, tecnologia, transformação e execução. Uma publicação intelectual da Venturare.',
+  url: `${SITE_URL}/insights`,
+}));
+---
+
+<PageLayout
+  title="Insights"
+  description="Perspectivas sobre estratégia, tecnologia, transformação e execução. Uma publicação intelectual da Venturare."
+  jsonLd={jsonLd}
+>
+
+  {/* ═══════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════ */}
+  <Section class="pt-16 lg:pt-28 pb-16 lg:pb-24">
+    <Container>
+      <div class="max-w-4xl">
+        <Eyebrow text="Insights" class="mb-8" />
+        <Heading tag="h1" size="hero" class="mb-8 text-balance">
+          {INSIGHT_HERO}
+        </Heading>
+        <p class="text-body-xl text-venturare-muted/80 max-w-2xl leading-relaxed">
+          {INSIGHT_SUB}
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       FEATURED
+       ═══════════════════════════════════════════════════ */}
+  {featured && (
+    <Section padding="xl" border>
+      <Container>
+        <Eyebrow text={INSIGHT_FEATURED_EYEBROW} class="mb-8" />
+        <div class="max-w-3xl">
+          <InsightCard
+            title={featured.data.title}
+            description={featured.data.description}
+            category={featured.data.category}
+            date={featured.data.date}
+            readingTime={featured.data.readingTime}
+            tags={featured.data.tags}
+            href={`/insights/${featured.data.category}/${featured.id.split('/').pop()}/`}
+          />
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  {/* ═══════════════════════════════════════════════════
+       CATEGORIAS
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mb-16">
+        <Eyebrow text="Categorias" />
+        <Heading tag="h2" size="h2" class="mb-6">
+          Quatro eixos de reflexão
+        </Heading>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-venturare-border/20">
+        {INSIGHT_CATEGORIES.map((cat) => (
+          <a href={`/insights/${cat.id}`} class="group bg-background p-8 lg:p-10">
+            <span class="text-caption text-venturare-green/70 uppercase tracking-widest block mb-3">
+              {cat.label}
+            </span>
+            <p class="text-body-lg text-venturare-muted/80 leading-relaxed group-hover:text-venturare-white/80 transition-colors duration-200">
+              {cat.description}
+            </p>
+            <span class="inline-flex items-center gap-2 text-small text-venturare-muted/75 mt-5 group-hover:text-venturare-green transition-colors duration-200">
+              Explorar <span class="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       PUBLICAÇÕES
+       ═══════════════════════════════════════════════════ */}
+  {insights.length > 0 && (
+    <Section padding="xl" border>
+      <Container>
+        <div class="max-w-3xl mb-14">
+          <Eyebrow text="Publicações" />
+          <Heading tag="h2" size="h2" class="mb-6">
+            Artigos publicados
+          </Heading>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {insights.map((post) => (
+            <InsightCard
+              title={post.data.title}
+              description={post.data.description}
+              category={post.data.category}
+              date={post.data.date}
+              readingTime={post.data.readingTime}
+              tags={post.data.tags}
+              href={`/insights/${post.data.category}/${post.id.split('/').pop()}/`}
+            />
+          ))}
+        </div>
+      </Container>
+    </Section>
+  )}
+
+  {/* ═══════════════════════════════════════════════════
+       TRANSIÇÃO
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-h2 font-display font-bold text-venturare-white tracking-tight text-balance">
+          {INSIGHT_TRANSITION}
+        </p>
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       PIPELINE EDITORIAL
+       ═══════════════════════════════════════════════════ */}
+  <Section padding="xl" border>
+    <Container>
+      <div class="max-w-3xl mb-14">
+        <Eyebrow text="Em preparação" />
+        <Heading tag="h2" size="h2" class="mb-6">
+          Reflexões que estão sendo escritas
+        </Heading>
+        <p class="text-body-lg text-venturare-muted/80">
+          Publicações em preparação. Nenhum artigo é publicado antes de estar de fato concluído.
+        </p>
+      </div>
+
+      <div class="max-w-4xl divide-y divide-venturare-border/20">
+        {INSIGHT_EDITORIAL_TITLES.map((title, i) => (
+          <div class="py-6 lg:py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-baseline">
+              <div class="lg:col-span-2">
+                <span class="text-caption text-venturare-muted/70 font-medium">{String(i + 1).padStart(2, '0')}</span>
+              </div>
+              <div class="lg:col-span-10">
+                <p class="text-body-lg text-venturare-white/85 font-display font-semibold tracking-tight">
+                  {title}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </Section>
+
+  {/* ═══════════════════════════════════════════════════
+       CTA
+       ═══════════════════════════════════════════════════ */}
+  <CTA
+    title="BOAS PERGUNTAS MUDAM A QUALIDADE DAS DECISÕES."
+    sub="Se você está diante de uma decisão complexa, começamos pela compreensão."
+    primaryLabel="Conversar"
+    primaryHref="/conversar"
+  />
+
+</PageLayout>

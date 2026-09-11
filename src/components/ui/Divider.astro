@@ -1,0 +1,16 @@
+---
+interface Props {
+  class?: string;
+  color?: 'border' | 'green' | 'graphite';
+}
+
+const { class: className = '', color = 'border' } = Astro.props;
+
+const colorClasses = {
+  border: 'border-venturare-border/30',
+  green: 'border-venturare-green/30',
+  graphite: 'border-venturare-graphite',
+};
+---
+
+<hr class:list={['border-t', colorClasses[color], className]} />

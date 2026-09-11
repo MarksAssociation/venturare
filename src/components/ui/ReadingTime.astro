@@ -1,0 +1,14 @@
+---
+import { getReadingTimeText } from '@/lib/utils';
+
+interface Props {
+  minutes: number;
+  class?: string;
+}
+
+const { minutes, class: className = '' } = Astro.props;
+---
+
+<span class:list={['text-caption text-venturare-muted/70', className]} aria-label={getReadingTimeText(minutes)}>
+  {getReadingTimeText(minutes)}
+</span>

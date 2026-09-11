@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.astro/
+.vercel/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+Thumbs.db
+.vscode/
+.idea/
+coverage/
+playwright-report/
+test-results/
+
+# Screenshots de validação (artefatos locais regeneráveis — ver screenshots/*.cjs)
+screenshots/validacao/
+screenshots/header/
+screenshots/typo-audit/
+screenshots/*.png

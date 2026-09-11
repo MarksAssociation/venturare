@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+  as?: 'div' | 'main' | 'article';
+}
+
+const { class: className = '', as: Tag = 'div' }: Props = Astro.props;
+---
+
+<Tag class:list={['max-w-venturare mx-auto px-6 sm:px-8 lg:px-12', className]}>
+  <slot />
+</Tag>
