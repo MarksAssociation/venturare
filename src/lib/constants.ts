@@ -259,6 +259,11 @@ export const INSIGHT_EDITORIAL_TITLES = [
   'Mudar processos não é transformar um negócio.',
 ];
 
+export const INSIGHT_PIPELINE_TITLE = 'PERSPECTIVAS EM CONSTRUÇÃO';
+export const INSIGHT_PIPELINE_SUB =
+  'Novas perspectivas sobre estratégia, tecnologia, transformação e execução estão sendo preparadas.';
+export const INSIGHT_PIPELINE_LABEL = 'Princípios que orientam nossas reflexões';
+
 /* ════════════════════════════════════════════════════════════
    SOBRE
    ════════════════════════════════════════════════════════════ */

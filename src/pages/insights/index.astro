@@ -16,6 +16,9 @@ import {
   INSIGHT_CATEGORIES,
   INSIGHT_TRANSITION,
   INSIGHT_EDITORIAL_TITLES,
+  INSIGHT_PIPELINE_TITLE,
+  INSIGHT_PIPELINE_SUB,
+  INSIGHT_PIPELINE_LABEL,
 } from '@/lib/constants';
 
 const insights = (await getCollection('insights'))
@@ -156,16 +159,19 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
       <div class="max-w-3xl mb-14">
         <Eyebrow text="Em preparação" />
         <Heading tag="h2" size="h2" class="mb-6">
-          Reflexões que estão sendo escritas
+          {INSIGHT_PIPELINE_TITLE}
         </Heading>
         <p class="text-body-lg text-venturare-muted/80">
-          Publicações em preparação. Nenhum artigo é publicado antes de estar de fato concluído.
+          {INSIGHT_PIPELINE_SUB}
         </p>
       </div>
 
+      <p class="text-caption text-venturare-green/70 uppercase tracking-widest mb-6 max-w-4xl">
+        {INSIGHT_PIPELINE_LABEL}
+      </p>
       <div class="max-w-4xl divide-y divide-venturare-border/20">
         {INSIGHT_EDITORIAL_TITLES.map((title, i) => (
-          <div class="py-6 lg:py-8">
+          <div class="py-5 lg:py-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-baseline">
               <div class="lg:col-span-2">
                 <span class="text-caption text-venturare-muted/70 font-medium">{String(i + 1).padStart(2, '0')}</span>

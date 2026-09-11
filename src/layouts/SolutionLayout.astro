@@ -48,7 +48,7 @@ const solutionTitle = SOLUTIONS.find((s) => s.id === detail.id)?.title ?? 'Solu�
           {detail.reality}
         </p>
         {detail.principle && (
-          <p class="text-h3 text-venturare-green font-display font-bold tracking-tight mt-8 text-balance">
+          <p class="text-h2 text-venturare-green font-display font-bold tracking-tight mt-10 text-balance">
             {detail.principle.label}
           </p>
         )}
@@ -73,7 +73,7 @@ const solutionTitle = SOLUTIONS.find((s) => s.id === detail.id)?.title ?? 'Solu�
           <div class="py-8 lg:py-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-baseline">
               <div class="lg:col-span-2">
-                <span class="text-h3 font-display font-extrabold tracking-tighter text-venturare-green/60">
+                <span class="text-h4 font-display font-extrabold tracking-tighter text-venturare-green/60">
                   {String(i + 1).padStart(2, '0')}
                 </span>
               </div>
@@ -112,7 +112,7 @@ const solutionTitle = SOLUTIONS.find((s) => s.id === detail.id)?.title ?? 'Solu�
   {/* ═══════════════════════════════════════════════════
        CAPACIDADES
        ═══════════════════════════════════════════════════ */}
-  <Section padding="xl" border>
+  <Section padding="xl" border class="pt-12 lg:pt-16">
     <Container>
       <div class="max-w-3xl mb-14">
         <Eyebrow text="Capacidades" />
@@ -122,8 +122,9 @@ const solutionTitle = SOLUTIONS.find((s) => s.id === detail.id)?.title ?? 'Solu�
       </div>
       <div class="max-w-4xl">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-venturare-border/20">
-          {detail.capabilities.map((cap) => (
+          {detail.capabilities.map((cap, i) => (
             <div class="bg-background p-6 lg:p-8">
+              <p class="text-caption text-venturare-green/60 uppercase tracking-widest mb-3">{String(i + 1).padStart(2, '0')}</p>
               <p class="text-body text-venturare-white/90 font-display font-semibold">{cap}</p>
             </div>
           ))}

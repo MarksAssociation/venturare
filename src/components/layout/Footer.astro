@@ -28,7 +28,7 @@ const socialLinks: Array<{ label: string; href: string }> = [];
           <ul class="space-y-3">
             {NAV_ITEMS.filter((item: { isCta?: boolean }) => !item.isCta).map((item: { label: string; href: string }) => (
               <li>
-                <a href={item.href} class="text-small text-venturare-muted/75 hover:text-venturare-white transition-colors duration-200">
+                <a href={item.href} class="text-small text-venturare-muted/85 hover:text-venturare-white transition-colors duration-200">
                   {item.label}
                 </a>
               </li>
@@ -40,7 +40,7 @@ const socialLinks: Array<{ label: string; href: string }> = [];
           <h3 class="text-eyebrow font-semibold text-venturare-muted/85 uppercase tracking-widest mb-5">Contato</h3>
           <ul class="space-y-3">
             <li>
-              <a href="/conversar" class="text-small text-venturare-muted/75 hover:text-venturare-white transition-colors duration-200">
+              <a href="/conversar" class="text-small text-venturare-muted/85 hover:text-venturare-white transition-colors duration-200">
                 Conversar com a Venturare
               </a>
             </li>
@@ -66,10 +66,10 @@ const socialLinks: Array<{ label: string; href: string }> = [];
     <Divider />
 
     <div class="py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-caption text-venturare-muted/75">
+      <p class="text-caption text-venturare-muted/80">
         &copy; {year} Venturare. Todos os direitos reservados.
       </p>
-      <p class="text-caption text-venturare-muted/75">
+      <p class="text-caption text-venturare-muted/80">
         venturare.com.br
       </p>
     </div>
