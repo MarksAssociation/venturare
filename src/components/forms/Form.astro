@@ -56,23 +56,23 @@ const configured = typeof endpoint === 'string' && endpoint.length > 0;
     <button type="submit" class="btn btn-primary" disabled={!configured}>
       {CONTACT_SUBMIT}
     </button>
-    <span id="form-status" class="text-small text-venturare-muted/75" role="status" aria-live="polite"></span>
+    <span id="form-status" class="text-small text-muted/75" role="status" aria-live="polite"></span>
   </div>
   {!configured && (
-    <p class="text-small text-venturare-muted/70">
+    <p class="text-small text-muted/70">
       O canal de mensagens será ativado em breve. Por enquanto, escreva diretamente pelo e-mail disponível nesta página.
     </p>
   )}
 </form>
 
 <div id="contact-success" class="hidden" role="status">
-  <div class="w-12 h-12 rounded-full border border-venturare-green/40 bg-venturare-green/10 flex items-center justify-center mb-8" aria-hidden="true">
-    <svg class="w-5 h-5 text-venturare-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5 10-11" /></svg>
+  <div class="w-12 h-12 rounded-full border border-accent/40 bg-accent/10 flex items-center justify-center mb-8" aria-hidden="true">
+    <svg class="w-5 h-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5 10-11" /></svg>
   </div>
-  <h2 id="contact-success-title" tabindex="-1" class="text-h3 font-display font-semibold text-venturare-white tracking-tight mb-6 outline-none">
+  <h2 id="contact-success-title" tabindex="-1" class="text-h3 font-display font-semibold text-foreground tracking-tight mb-6 outline-none">
     {CONTACT_SUCCESS_TITLE}
   </h2>
-  <p class="text-body-lg text-venturare-muted/80 leading-relaxed max-w-xl mb-10">
+  <p class="text-body-lg text-muted/80 leading-relaxed max-w-xl mb-10">
     {CONTACT_SUCCESS_TEXT}
   </p>
   <Button href="/" variant="secondary">

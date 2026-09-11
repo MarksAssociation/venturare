@@ -1,4 +1,4 @@
----
+﻿---
 interface BreadcrumbItem {
   label: string;
   href?: string;
@@ -13,19 +13,19 @@ const { items, class: className = '' } = Astro.props;
 ---
 
 <nav aria-label="Breadcrumb" class:list={['text-small', className]}>
-  <ol class="flex items-center gap-2 text-venturare-muted">
+  <ol class="flex items-center gap-2 text-muted">
     <li>
-      <a href="/" class="hover:text-venturare-green transition-colors duration-150">Início</a>
+      <a href="/" class="hover:text-accent transition-colors duration-150">Início</a>
     </li>
     {items.map((item) => (
       <li class="flex items-center gap-2">
-        <span class="text-venturare-border select-none">/</span>
+        <span class="text-border select-none">/</span>
         {item.href ? (
-          <a href={item.href} class="hover:text-venturare-green transition-colors duration-150">
+          <a href={item.href} class="hover:text-accent transition-colors duration-150">
             {item.label}
           </a>
         ) : (
-          <span class="text-venturare-white" aria-current="page">{item.label}</span>
+          <span class="text-foreground" aria-current="page">{item.label}</span>
         )}
       </li>
     ))}

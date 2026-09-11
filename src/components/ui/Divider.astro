@@ -1,4 +1,4 @@
----
+﻿---
 interface Props {
   class?: string;
   color?: 'border' | 'green' | 'graphite';
@@ -7,9 +7,9 @@ interface Props {
 const { class: className = '', color = 'border' } = Astro.props;
 
 const colorClasses = {
-  border: 'border-venturare-border/30',
-  green: 'border-venturare-green/30',
-  graphite: 'border-venturare-graphite',
+  border: 'border-border/30',
+  green: 'border-accent/30',
+  graphite: 'border-surface',
 };
 ---
 

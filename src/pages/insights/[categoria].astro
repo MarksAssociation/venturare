@@ -49,8 +49,8 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
       />
       <div class="max-w-3xl">
         <Eyebrow text="Categoria" class="mb-6" />
-        <h1 class="text-h1 text-venturare-white mb-6">{category.label}</h1>
-        <p class="text-body-xl text-venturare-muted/85">{category.description}</p>
+        <h1 class="text-h1 text-foreground mb-6">{category.label}</h1>
+        <p class="text-body-xl text-muted/85">{category.description}</p>
       </div>
     </Container>
   </Section>
@@ -76,7 +76,7 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
   ) : (
     <Section padding="xl" border>
       <Container>
-        <p class="text-body-lg text-venturare-muted/70">
+        <p class="text-body-lg text-muted/70">
           Publicações em preparação para esta categoria. Nenhum artigo é publicado antes de estar concluído.
         </p>
       </Container>

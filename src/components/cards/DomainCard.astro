@@ -18,36 +18,36 @@ const Tag = href ? 'a' : 'div';
 
 <Tag
   href={href}
-  class="group relative flex flex-col h-full rounded-lg border border-venturare-border/20 bg-venturare-graphite/40 p-7 lg:p-9 transition-all duration-300 hover:-translate-y-1 hover:border-venturare-border/50 hover:bg-venturare-graphite/60"
+  class="group relative flex flex-col h-full rounded-lg border border-border/20 bg-surface/40 p-7 lg:p-9 transition-all duration-300 hover:-translate-y-1 hover:border-border/50 hover:bg-surface/60"
   aria-label={href ? `${title} — ver detalhes` : undefined}
 >
   {/* Área superior: número + ícone */}
   <div class="flex items-start justify-between mb-6">
-    <span class="text-h2 font-display font-extrabold tracking-tighter text-venturare-muted/20 group-hover:text-venturare-green/30 transition-colors duration-300">
+    <span class="text-h2 font-display font-extrabold tracking-tighter text-muted/20 group-hover:text-accent/30 transition-colors duration-300">
       {num}
     </span>
-    <span class="text-venturare-muted/30 group-hover:text-venturare-green/60 transition-colors duration-300" set:html={icon} />
+    <span class="text-muted/30 group-hover:text-accent/60 transition-colors duration-300" set:html={icon} />
   </div>
 
   {/* Separador */}
-  <div class="h-px bg-venturare-border/20 mb-6 group-hover:bg-venturare-border/40 transition-colors duration-300"></div>
+  <div class="h-px bg-border/20 mb-6 group-hover:bg-border/40 transition-colors duration-300"></div>
 
   {/* Área central */}
   <div class="flex-1">
-    <p class="text-caption text-venturare-green/70 uppercase tracking-widest mb-3">
+    <p class="text-caption text-accent/70 uppercase tracking-widest mb-3">
       {eyebrowText}
     </p>
-    <h3 class="text-h4 text-venturare-white font-display font-semibold tracking-tight mb-3 group-hover:text-venturare-green transition-colors duration-300">
+    <h3 class="text-h4 text-foreground font-display font-semibold tracking-tight mb-3 group-hover:text-accent transition-colors duration-300">
       {title}
     </h3>
-    <p class="text-body text-venturare-muted/75 leading-relaxed">
+    <p class="text-body text-muted/75 leading-relaxed">
       {description}
     </p>
   </div>
 
   {/* Área inferior: seta (somente quando há link) */}
   {href && (
-    <div class="mt-8 flex items-center gap-2 text-small text-venturare-muted/70 group-hover:text-venturare-green transition-colors duration-300">
+    <div class="mt-8 flex items-center gap-2 text-small text-muted/70 group-hover:text-accent transition-colors duration-300">
       <span>{ctaText}</span>
       <span class="transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
     </div>
@@ -56,7 +56,7 @@ const Tag = href ? 'a' : 'div';
   {/* Detalhe de trajetória sutil */}
   <div class="absolute bottom-0 left-0 right-0 h-12 overflow-hidden rounded-b-lg pointer-events-none" aria-hidden="true">
     <svg class="absolute bottom-0 left-0 w-full h-full opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-300" viewBox="0 0 200 40" preserveAspectRatio="none">
-      <path d="M0 40 Q50 20 100 25 T200 15 L200 40 Z" fill="currentColor" class="text-venturare-green" />
+      <path d="M0 40 Q50 20 100 25 T200 15 L200 40 Z" fill="currentColor" class="text-accent" />
     </svg>
   </div>
 </Tag>

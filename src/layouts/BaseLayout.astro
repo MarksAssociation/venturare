@@ -17,8 +17,28 @@ const { title, description, image, canonicalUrl, jsonLd } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
   <head>
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('venturare-theme');
+          if (stored === 'light' || stored === 'dark') {
+            document.documentElement.setAttribute('data-theme', stored);
+            document.documentElement.classList.toggle('dark', stored === 'dark');
+          } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
     <SEO
       title={title}
       description={description}
@@ -27,7 +47,7 @@ const { title, description, image, canonicalUrl, jsonLd } = Astro.props;
     />
     {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
   </head>
-  <body class="min-h-screen flex flex-col bg-background text-foreground">
+  <body class="min-h-screen flex flex-col">
     <SkipLink />
     <Header />
 

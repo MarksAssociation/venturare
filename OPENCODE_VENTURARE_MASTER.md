@@ -2176,3 +2176,57 @@ screenshots atualizados. Não iniciar outra fase após a correção.
 Aguardar nova autorização.
 
 > **TRANSFORMANDO VISÃO EM RESULTADOS**
+
+------------------------------------------------------------------------
+
+# 37. SISTEMA DE TEMAS --- CLARO E ESCURO
+
+O site Venturare suporta dois temas: **escuro** (padrão) e **claro**.
+Todas as novas páginas e componentes devem usar tokens semânticos para
+cores, nunca cores fixas hardcoded.
+
+## 37.1 Arquitetura
+
+- `data-theme="dark"` / `data-theme="light"` no elemento `<html>`.
+- CSS custom properties em `global.css` (`:root` = dark, `[data-theme="light"]` = light).
+- Tailwind config mapeia variáveis CSS para classes utilitárias semânticas.
+- Persistência via `localStorage` chave `venturare-theme`.
+- Flash prevention: `<script is:inline>` no `<head>` do `BaseLayout.astro`.
+
+## 37.2 Tokens semânticos (usar estes, NUNCA cores fixas)
+
+| Uso | Classe Tailwind | Variável CSS |
+|---|---|---|
+| Fundo da página | `bg-background` | `--color-background` |
+| Texto principal | `text-foreground` | `--color-foreground` |
+| Texto secundário | `text-muted` | `--color-foreground-muted` |
+| Superfície/cards | `bg-surface` | `--color-surface` |
+| Superfície elevada | `bg-surface-elevated` | `--color-surface-elevated` |
+| Acento/verde | `text-accent`, `bg-accent` | `--color-accent` |
+| Bordas | `border-border` | `--color-border` |
+| Navy (destaque) | `bg-navy` | `--color-navy` |
+| Fundo do input | `bg-input-bg` | `--color-input-bg` |
+| Placeholder | `text-input-placeholder` | `--color-input-placeholder` |
+| Foco | `ring-accent` | `--color-focus-ring` |
+| Texto sobre verde | `text-green-fg` | `--color-green-fg` |
+| Erro | `text-error` | `--color-error` |
+
+## 37.3 Regras para novas páginas
+
+1. **Sempre** usar classes semânticas (`bg-background`, `text-foreground`, etc.).
+2. **Nunca** usar `bg-venturare-black`, `text-venturare-white` etc. em markup.
+3. Cores `venturare-*` (brand) são estáticas e só para uso em contexts
+   específicos (tag categories, skip link, gradientes de imagem).
+4. Gradientes sobre imagens devem usar `from-background`, `via-surface`
+   etc. para adaptar com o tema.
+5. SVGs com `filter: brightness(0) invert(1)` devem ter classe
+   `logo-wordmap` e regras CSS dedicadas para light/dark.
+6. Formulários: usar classes `.input`, `.label` do `global.css`.
+
+## 37.4 Paleta oficial
+
+**Dark:** bg `#080A0B`, surface `#111518`, fg `#F5F7F6`, muted `#9BA5A8`,
+accent `#2EB837`, border `#263237`.
+
+**Light:** bg `#F7F8F7`, surface `#FFFFFF`, fg `#0B1B26`, muted `#52616B`,
+accent `#168A46`, border `#DCE3E1`.

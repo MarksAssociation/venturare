@@ -1,4 +1,4 @@
----
+﻿---
 interface Props {
   href: string;
   class?: string;
@@ -11,7 +11,7 @@ const { href, class: className = '', target, rel } = Astro.props;
 
 <a
   href={href}
-  class:list={['text-venturare-muted hover:text-venturare-green transition-colors duration-150 underline underline-offset-4 decoration-venturare-border/40 hover:decoration-venturare-green/60', className]}
+  class:list={['text-muted hover:text-accent transition-colors duration-150 underline underline-offset-4 decoration-border/40 hover:decoration-accent/60', className]}
   target={target}
   rel={rel}
 >

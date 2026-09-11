@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer-core');
 
-const BASE = 'http://localhost:4321';
+const BASE = 'http://localhost:4173';
 const routes = [
   '/', '/como-pensamos/', '/sobre/', '/solucoes/',
   '/solucoes/estrategia-transformacao/', '/solucoes/tecnologia-inteligencia/',
@@ -28,13 +28,16 @@ const viewports = [
         const res = await page.goto(`${BASE}${url}`, { waitUntil: 'networkidle0', timeout: 30000 });
         status = res.status();
       } catch (e) { status = -1; }
-      const audit = await page.evaluate(() => ({
-        headers: document.querySelectorAll('header').length,
-        footers: document.querySelectorAll('footer').length,
-        overflowX: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-        imgsNoAlt: [...document.querySelectorAll('img')].filter((i) => !i.hasAttribute('alt')).length,
-        title: document.title,
-      }));
+      const audit = await page.evaluate(() => {
+        const de = document.documentElement;
+        return {
+          headers: document.querySelectorAll('header').length,
+          footers: document.querySelectorAll('footer').length,
+          overflowX: de ? de.scrollWidth - de.clientWidth : 0,
+          imgsNoAlt: [...document.querySelectorAll('img')].filter((i) => !i.hasAttribute('alt')).length,
+          title: document.title,
+        };
+      });
       const ok = status === 200 && audit.headers === 1 && audit.footers === 1 && audit.overflowX <= 0;
       if (!ok) fail++;
       console.log(`${ok ? 'PASS' : 'FAIL'} [${label}] ${url} status=${status} header=${audit.headers} footer=${audit.footers} overflowX=${audit.overflowX}px imgsNoAlt=${audit.imgsNoAlt}`);

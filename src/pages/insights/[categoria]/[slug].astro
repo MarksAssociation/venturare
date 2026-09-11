@@ -69,15 +69,15 @@ const { Content } = await render(post);
 
       <div class="max-w-3xl">
         <Eyebrow text={getCategoryLabel(category)} class="mb-6" />
-        <h1 class="text-h1 text-venturare-white mb-6">{title}</h1>
-        <p class="text-body-xl text-venturare-muted/85 leading-relaxed mb-8">
+        <h1 class="text-h1 text-foreground mb-6">{title}</h1>
+        <p class="text-body-xl text-muted/85 leading-relaxed mb-8">
           {description}
         </p>
-        <div class="flex flex-wrap items-center gap-3 text-caption text-venturare-muted/70">
+        <div class="flex flex-wrap items-center gap-3 text-caption text-muted/70">
           <time datetime={date.toISOString()}>{formatDate(date)}</time>
-          <span class="text-venturare-border">|</span>
+          <span class="text-border">|</span>
           <span>{post.data.author}</span>
-          <span class="text-venturare-border">|</span>
+          <span class="text-border">|</span>
           <ReadingTime minutes={post.data.readingTime} />
         </div>
       </div>
@@ -97,7 +97,7 @@ const { Content } = await render(post);
       <Container>
         <div class="max-w-3xl mx-auto flex flex-wrap gap-2">
           {tags.map((tag: string) => (
-            <span class="text-caption text-venturare-muted/70">#{tag}</span>
+            <span class="text-caption text-muted/70">#{tag}</span>
           ))}
         </div>
       </Container>

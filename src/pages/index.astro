@@ -43,9 +43,9 @@ const approachSteps = [
     <Container class="relative z-10">
       <div class="max-w-5xl">
         <Heading tag="h1" size="display" class="mb-8 w-fit max-w-full text-balance lg:max-w-[60rem]">
-          TRANSFORMANDO <span class="text-venturare-green">VISÃO</span><br /> EM <span class="text-venturare-green">RESULTADOS</span>
+          TRANSFORMANDO <span class="text-accent">VISÃO</span><br /> EM <span class="text-accent">RESULTADOS</span>
         </Heading>
-        <p class="text-body-xl text-venturare-muted/80 max-w-2xl mb-12 leading-relaxed">
+        <p class="text-body-xl text-muted/80 max-w-2xl mb-12 leading-relaxed">
           Conectamos estratégia, tecnologia e execução para transformar desafios complexos em resultados concretos.
         </p>
         <div class="flex flex-wrap items-center gap-4">
@@ -72,9 +72,9 @@ const approachSteps = [
         <Eyebrow text="Nossa abordagem" />
         <Heading tag="h2" size="h2" class="mb-6 max-w-3xl mx-auto text-balance">
           NÃO COMEÇAMOS PELA TECNOLOGIA.<br />
-          <span class="text-venturare-green">COMEÇAMOS PELA COMPREENSÃO.</span>
+          <span class="text-accent">COMEÇAMOS PELA COMPREENSÃO.</span>
         </Heading>
-        <p class="text-body-lg text-venturare-muted/80 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-body-lg text-muted/80 max-w-2xl mx-auto leading-relaxed">
           Toda transformação começa antes da solução.
         </p>
       </div>
@@ -91,9 +91,9 @@ const approachSteps = [
         <Eyebrow text="O problema" />
         <Heading tag="h2" size="hero" class="mb-8 text-balance">
           TECNOLOGIA SEM DIREÇÃO<br />
-          <span class="text-venturare-muted/80">ACELERA O CAMINHO ERRADO.</span>
+          <span class="text-muted/90">ACELERA O CAMINHO ERRADO.</span>
         </Heading>
-        <p class="text-body-lg text-venturare-muted/75 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-body-lg text-muted/75 max-w-2xl mx-auto leading-relaxed">
           Organizações investem em ferramentas sem clareza de direção. A velocidade da execução sem estratégia gera desperdício e resultados abaixo do potencial.
         </p>
       </div>
@@ -111,7 +111,7 @@ const approachSteps = [
         <Heading tag="h2" size="h2" class="mb-6">
           Nossa abordagem
         </Heading>
-        <p class="text-body-lg text-venturare-muted/80">
+        <p class="text-body-lg text-muted/80">
           Um percurso claro, da compreensão ao resultado.
         </p>
       </div>
@@ -124,28 +124,28 @@ const approachSteps = [
             <div class="relative text-center group">
               {/* Nó da jornada */}
               <div class="relative z-10 w-14 h-14 mx-auto mb-5">
-                <div class="absolute inset-0 rounded-full border border-venturare-border/40 transition-all duration-500 group-hover:border-venturare-green/60 group-hover:scale-110"></div>
-                <div class="absolute inset-1 rounded-full bg-venturare-graphite flex items-center justify-center transition-all duration-500 group-hover:bg-venturare-graphite/80">
-                  <span class="text-venturare-green/80 font-display font-bold text-body transition-colors duration-300 group-hover:text-venturare-green">
+                <div class="absolute inset-0 rounded-full border border-border/40 transition-all duration-500 group-hover:border-accent/60 group-hover:scale-110"></div>
+                <div class="absolute inset-1 rounded-full bg-surface flex items-center justify-center transition-all duration-500 group-hover:bg-surface/80">
+                  <span class="text-accent/80 font-display font-bold text-body transition-colors duration-300 group-hover:text-accent">
                     {i + 1}
                   </span>
                 </div>
               </div>
 
               {/* Label */}
-              <p class="text-button text-venturare-white mb-2 font-display font-semibold tracking-tight">
+              <p class="text-button text-foreground mb-2 font-display font-semibold tracking-tight">
                 {step.label}
               </p>
 
               {/* Descrição */}
-              <p class="text-small text-venturare-muted/80 leading-relaxed hidden md:block max-w-[150px] mx-auto">
+              <p class="text-small text-muted/80 leading-relaxed hidden md:block max-w-[150px] mx-auto">
                 {step.description}
               </p>
 
               {/* Conector visual — desktop */}
               {i < approachSteps.length - 1 && (
                 <div class="hidden lg:block absolute top-7 left-[calc(50%+32px)] w-[calc(100%-64px)]">
-                  <div class="h-px bg-gradient-to-r from-venturare-green/30 via-venturare-border/50 to-venturare-green/30"></div>
+                  <div class="h-px bg-gradient-to-r from-accent/30 via-border/50 to-accent/30"></div>
                 </div>
               )}
             </div>
@@ -167,7 +167,7 @@ const approachSteps = [
         <Heading tag="h2" size="h2" class="mb-6">
           Três domínios de atuação
         </Heading>
-        <p class="text-body-lg text-venturare-muted/80">
+        <p class="text-body-lg text-muted/80">
           Cada domínio responde a um tipo de desafio real das organizações.
         </p>
       </div>
@@ -197,9 +197,9 @@ const approachSteps = [
           <Eyebrow text="Experiências" />
           <Heading tag="h2" size="h2" class="mb-6 text-balance">
             Desafios complexos.<br />
-            <span class="text-venturare-green">Decisões mais claras.</span>
+            <span class="text-accent">Decisões mais claras.</span>
           </Heading>
-          <p class="text-body-lg text-venturare-muted/80 mb-10 leading-relaxed">
+          <p class="text-body-lg text-muted/80 mb-10 leading-relaxed">
             Experiências construídas na interseção entre estratégia, tecnologia e execução.
           </p>
           <Button href="/experiencias" variant="text">
@@ -208,23 +208,23 @@ const approachSteps = [
           </Button>
         </div>
         <div class="lg:col-span-5">
-          <div class="rounded-lg border border-venturare-border/20 bg-venturare-graphite/40 p-8 lg:p-10">
-              <p class="text-caption text-venturare-muted/70 uppercase tracking-widest mb-6">
+          <div class="rounded-lg border border-border/20 bg-surface/40 p-8 lg:p-10">
+              <p class="text-caption text-muted/70 uppercase tracking-widest mb-6">
               Contextos de atuação
             </p>
-            <div class="h-px bg-venturare-border/25 mb-8"></div>
+            <div class="h-px bg-border/25 mb-8"></div>
             <div class="space-y-8">
               <div class="flex items-baseline gap-5">
-                <span class="text-small font-display font-semibold text-venturare-green/80">01</span>
-                <p class="text-body text-venturare-white/80 leading-snug">Transformações que exigem precisão</p>
+                <span class="text-small font-display font-semibold text-accent/80">01</span>
+                <p class="text-body text-foreground/80 leading-snug">Transformações que exigem precisão</p>
               </div>
               <div class="flex items-baseline gap-5">
-                <span class="text-small font-display font-semibold text-venturare-green/80">02</span>
-                <p class="text-body text-venturare-white/80 leading-snug">Decisões de tecnologia em escala</p>
+                <span class="text-small font-display font-semibold text-accent/80">02</span>
+                <p class="text-body text-foreground/80 leading-snug">Decisões de tecnologia em escala</p>
               </div>
               <div class="flex items-baseline gap-5">
-                <span class="text-small font-display font-semibold text-venturare-green/80">03</span>
-                <p class="text-body text-venturare-white/80 leading-snug">Estratégia conectada à execução</p>
+                <span class="text-small font-display font-semibold text-accent/80">03</span>
+                <p class="text-body text-foreground/80 leading-snug">Estratégia conectada à execução</p>
               </div>
             </div>
           </div>
@@ -241,20 +241,20 @@ const approachSteps = [
     <Container>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div class="lg:col-span-5 order-2 lg:order-1">
-          <div class="relative aspect-[4/3] rounded-lg overflow-hidden border border-venturare-border/15">
-            <div class="absolute inset-0 bg-gradient-to-bl from-venturare-graphite/70 via-venturare-navy/40 to-venturare-black/60"></div>
+          <div class="relative aspect-[4/3] rounded-lg overflow-hidden border border-border/15">
+            <div class="absolute inset-0 bg-gradient-to-bl from-surface/70 via-navy/40 to-background/60"></div>
             {/* Composição editorial */}
             <div class="absolute inset-0 p-6 lg:p-8 flex flex-col justify-between">
               <div class="flex items-start justify-between">
-                <span class="text-caption text-venturare-green/60 uppercase tracking-widest">
+                <span class="text-caption text-accent/60 uppercase tracking-widest">
                   Perspectiva
                 </span>
               </div>
-              <p class="text-h3 font-serif italic text-venturare-white/85 leading-relaxed">
+              <p class="text-h3 font-serif italic text-foreground/85 leading-relaxed">
                 &ldquo;Antes de decidir, compreenda.
-                <span class="block text-venturare-muted/80 mt-3 text-body-lg">Antes de executar, direção.&rdquo;</span>
+                <span class="block text-muted/80 mt-3 text-body-lg">Antes de executar, direção.&rdquo;</span>
               </p>
-              <p class="text-caption text-venturare-muted/70 uppercase tracking-widest">
+              <p class="text-caption text-muted/70 uppercase tracking-widest">
                 Reflexões em preparação
               </p>
             </div>
@@ -265,7 +265,7 @@ const approachSteps = [
           <Heading tag="h2" size="h2" class="mb-6 text-balance">
             Pensamentos para quem precisa decidir antes de executar.
           </Heading>
-          <p class="text-body text-venturare-muted/80 mb-8 leading-relaxed">
+          <p class="text-body text-muted/80 mb-8 leading-relaxed">
             Ideias, reflexões e perspectivas sobre estratégia, tecnologia, transformação e execução.
           </p>
           <Button href="/insights" variant="text">
@@ -288,10 +288,10 @@ const approachSteps = [
         <Heading tag="h2" size="h2" class="mb-8 text-balance">
           Uma consultoria construída para aproximar estratégia e execução.
         </Heading>
-        <p class="text-body-lg text-venturare-muted/85 leading-relaxed mb-8">
+        <p class="text-body-lg text-muted/85 leading-relaxed mb-8">
           Venturare remete a uma jornada consciente em direção ao futuro: compreender o terreno, enxergar o horizonte, escolher o caminho e avançar.
         </p>
-        <p class="text-body-xl text-venturare-white/85 leading-relaxed mb-12">
+        <p class="text-body-xl text-foreground/85 leading-relaxed mb-12">
           Estratégia antes da tecnologia. Negócio antes da execução.
         </p>
         <Button href="/sobre" variant="secondary">
@@ -311,7 +311,7 @@ const approachSteps = [
       <div class="max-w-3xl mx-auto text-center">
         <Heading tag="h2" size="h2" class="mb-8 text-balance">
           O FUTURO NÃO COMEÇA NA EXECUÇÃO.<br />
-          <span class="text-venturare-green">COMEÇA NA DIREÇÃO QUE ESCOLHEMOS SEGUIR.</span>
+          <span class="text-accent">COMEÇA NA DIREÇÃO QUE ESCOLHEMOS SEGUIR.</span>
         </Heading>
         <div class="flex justify-center">
           <Button href="/conversar" variant="primary" size="lg">

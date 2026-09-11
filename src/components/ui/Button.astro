@@ -19,13 +19,13 @@ const {
   rel,
 } = Astro.props;
 
-const baseClasses = 'inline-flex items-center justify-center gap-2 font-button rounded transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-venturare-green focus-visible:ring-offset-2 focus-visible:ring-offset-venturare-black disabled:opacity-50 disabled:cursor-not-allowed';
+const baseClasses = 'inline-flex items-center justify-center gap-2 font-button rounded transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed';
 
 const variantClasses = {
-  primary: 'bg-venturare-green text-venturare-black hover:bg-venturare-green/90 active:bg-venturare-green-dim',
-  secondary: 'border border-venturare-border text-venturare-muted hover:border-venturare-green/50 hover:text-venturare-white active:border-venturare-green active:text-venturare-green',
-  ghost: 'text-venturare-muted hover:text-venturare-green active:text-venturare-green-dim',
-  text: 'text-venturare-muted hover:text-venturare-green gap-1.5',
+  primary: 'bg-accent text-green-fg hover:bg-accent/90 active:bg-accent-dim',
+  secondary: 'border border-border text-muted hover:border-accent/50 hover:text-foreground active:border-accent active:text-accent',
+  ghost: 'text-muted hover:text-accent active:text-accent-dim',
+  text: 'text-muted hover:text-accent gap-1.5',
 };
 
 const sizeClasses = {

@@ -11,6 +11,28 @@ export default {
         button: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
+        background: 'rgb(var(--color-background) / <alpha-value>)',
+        foreground: 'rgb(var(--color-foreground) / <alpha-value>)',
+        muted: 'rgb(var(--color-foreground-muted) / <alpha-value>)',
+        'foreground-dim': 'rgb(var(--color-foreground-dim) / <alpha-value>)',
+        surface: 'rgb(var(--color-surface) / <alpha-value>)',
+        'surface-elevated': 'rgb(var(--color-surface-elevated) / <alpha-value>)',
+        accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        'accent-dim': 'rgb(var(--color-accent-dim) / <alpha-value>)',
+        'accent-hover': 'rgb(var(--color-accent-hover) / <alpha-value>)',
+        border: 'rgb(var(--color-border) / <alpha-value>)',
+        'border-strong': 'rgb(var(--color-border-strong) / <alpha-value>)',
+        navy: 'rgb(var(--color-navy) / <alpha-value>)',
+        'navy-fg': 'rgb(var(--color-navy-fg) / <alpha-value>)',
+        'input-bg': 'rgb(var(--color-input-bg) / <alpha-value>)',
+        'input-border': 'rgb(var(--color-input-border) / <alpha-value>)',
+        'input-placeholder': 'rgb(var(--color-input-placeholder) / <alpha-value>)',
+        success: 'rgb(var(--color-success) / <alpha-value>)',
+        error: 'rgb(var(--color-error) / <alpha-value>)',
+        copper: 'rgb(var(--color-copper) / <alpha-value>)',
+        'green-fg': 'rgb(var(--color-green-fg) / <alpha-value>)',
+
+        /* Legacy brand palette — static, theme-invariant */
         venturare: {
           black: '#080A0B',
           graphite: '#111518',

@@ -1,4 +1,4 @@
----
+﻿---
 interface Props {
   text: string;
   variant?: 'category' | 'tag';
@@ -8,8 +8,8 @@ interface Props {
 const { text, variant = 'tag', class: className = '' } = Astro.props;
 
 const variantClasses = {
-  category: 'bg-venturare-green/10 text-venturare-green',
-  tag: 'bg-venturare-graphite text-venturare-muted border border-venturare-border',
+  category: 'bg-accent/10 text-accent',
+  tag: 'bg-surface text-muted border border-border',
 };
 ---
 

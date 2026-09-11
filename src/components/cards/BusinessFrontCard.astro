@@ -12,42 +12,42 @@ const { index, title, tagline, items, benefit, icon } = Astro.props;
 ---
 
 <article
-  class="group relative flex flex-col h-full rounded-lg border border-venturare-border/20 bg-venturare-graphite/40 p-7 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-venturare-border/50 hover:bg-venturare-graphite/60"
+  class="group relative flex flex-col h-full rounded-lg border border-border/20 bg-surface/40 p-7 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-border/50 hover:bg-surface/60"
   aria-label={`${title}`}
 >
   {/* Número + ícone */}
   <div class="flex items-start justify-between mb-6">
-    <span class="text-h3 font-display font-extrabold tracking-tighter text-venturare-muted/25 group-hover:text-venturare-green/40 transition-colors duration-300">
+    <span class="text-h3 font-display font-extrabold tracking-tighter text-muted/25 group-hover:text-accent/40 transition-colors duration-300">
       {index}
     </span>
-    <span class="text-venturare-muted/40 group-hover:text-venturare-green/70 transition-colors duration-300" set:html={icon} aria-hidden="true" />
+    <span class="text-muted/40 group-hover:text-accent/70 transition-colors duration-300" set:html={icon} aria-hidden="true" />
   </div>
 
   {/* Separador */}
-  <div class="h-px bg-venturare-border/20 mb-6 group-hover:bg-venturare-border/40 transition-colors duration-300"></div>
+  <div class="h-px bg-border/20 mb-6 group-hover:bg-border/40 transition-colors duration-300"></div>
 
   {/* Título + tagline */}
-  <h3 class="text-h4 text-venturare-white font-display font-semibold tracking-tight mb-3">
+  <h3 class="text-h4 text-foreground font-display font-semibold tracking-tight mb-3">
     {title}
   </h3>
-  <p class="text-body text-venturare-green/80 leading-relaxed mb-6">
+  <p class="text-body text-accent/80 leading-relaxed mb-6">
     {tagline}
   </p>
 
   {/* Itens */}
   <ul class="space-y-2.5 mb-8 flex-1">
     {items.map((item) => (
-      <li class="flex items-start gap-3 text-small text-venturare-muted/80 leading-relaxed">
-        <span class="text-venturare-green/60 mt-0.5 shrink-0" aria-hidden="true">&ndash;</span>
+      <li class="flex items-start gap-3 text-small text-muted/80 leading-relaxed">
+        <span class="text-accent/60 mt-0.5 shrink-0" aria-hidden="true">&ndash;</span>
         <span>{item}</span>
       </li>
     ))}
   </ul>
 
   {/* Benefício */}
-  <div class="border-l-2 border-venturare-green/40 pl-4">
-    <p class="text-caption text-venturare-green/70 uppercase tracking-widest mb-2">Benefício</p>
-    <p class="text-small text-venturare-white/85 leading-relaxed">
+  <div class="border-l-2 border-accent/40 pl-4">
+    <p class="text-caption text-accent/70 uppercase tracking-widest mb-2">Benefício</p>
+    <p class="text-small text-foreground/85 leading-relaxed">
       {benefit}
     </p>
   </div>

@@ -1,4 +1,4 @@
----
+﻿---
 import Badge from '@/components/ui/Badge.astro';
 
 interface Props {
@@ -19,14 +19,14 @@ const { title, description, industry, href, confidential = false, class: classNa
       <Badge text="Experiência" variant="category" />
       {confidential && <Badge text="Confidencial" variant="tag" />}
     </div>
-    <p class="text-caption text-venturare-muted/70 uppercase tracking-wider mb-2">{industry}</p>
-    <h3 class="text-h4 text-venturare-white mb-3 group-hover:text-venturare-green transition-colors duration-200">
+    <p class="text-caption text-muted/70 uppercase tracking-wider mb-2">{industry}</p>
+    <h3 class="text-h4 text-foreground mb-3 group-hover:text-accent transition-colors duration-200">
       {title}
     </h3>
-    <p class="text-small text-venturare-muted/85 leading-relaxed flex-1 line-clamp-3">
+    <p class="text-small text-muted/85 leading-relaxed flex-1 line-clamp-3">
       {description}
     </p>
-    <div class="mt-6 flex items-center gap-2 text-small text-venturare-muted/70 group-hover:text-venturare-green transition-colors duration-200">
+    <div class="mt-6 flex items-center gap-2 text-small text-muted/70 group-hover:text-accent transition-colors duration-200">
       <span>Ver experiência</span>
       <span class="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
     </div>

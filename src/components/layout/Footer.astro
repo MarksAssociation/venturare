@@ -1,4 +1,4 @@
----
+﻿---
 import Container from '@/components/ui/Container.astro';
 import Divider from '@/components/ui/Divider.astro';
 import Logo from '@/components/brand/Logo.astro';
@@ -9,26 +9,26 @@ const year = new Date().getFullYear();
 const socialLinks: Array<{ label: string; href: string }> = [];
 ---
 
-<footer class="bg-venturare-graphite/30">
+<footer class="bg-surface/30">
   <Container>
     <div class="py-16 lg:py-20">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8">
         <div class="md:col-span-5">
           <Logo size="md" />
-          <p class="text-small text-venturare-muted/85 mt-4 max-w-xs leading-relaxed">
+          <p class="text-small text-muted/85 mt-4 max-w-xs leading-relaxed">
             Transformando Visão em Resultados.
           </p>
-          <p class="text-caption text-venturare-muted/75 mt-6">
+          <p class="text-caption text-muted/75 mt-6">
             Conectamos estratégia, tecnologia e execução.
           </p>
         </div>
 
         <div class="md:col-span-3 md:col-start-7">
-          <h3 class="text-eyebrow font-semibold text-venturare-muted/85 uppercase tracking-widest mb-5">Navegação</h3>
+          <h3 class="text-eyebrow font-semibold text-muted/85 uppercase tracking-widest mb-5">Navegação</h3>
           <ul class="space-y-3">
             {NAV_ITEMS.filter((item: { isCta?: boolean }) => !item.isCta).map((item: { label: string; href: string }) => (
               <li>
-                <a href={item.href} class="text-small text-venturare-muted/85 hover:text-venturare-white transition-colors duration-200">
+                <a href={item.href} class="text-small text-muted/85 hover:text-foreground transition-colors duration-200">
                   {item.label}
                 </a>
               </li>
@@ -37,21 +37,21 @@ const socialLinks: Array<{ label: string; href: string }> = [];
         </div>
 
         <div class="md:col-span-3">
-          <h3 class="text-eyebrow font-semibold text-venturare-muted/85 uppercase tracking-widest mb-5">Contato</h3>
+          <h3 class="text-eyebrow font-semibold text-muted/85 uppercase tracking-widest mb-5">Contato</h3>
           <ul class="space-y-3">
             <li>
-              <a href="/conversar" class="text-small text-venturare-muted/85 hover:text-venturare-white transition-colors duration-200">
+              <a href="/conversar" class="text-small text-muted/85 hover:text-foreground transition-colors duration-200">
                 Conversar com a Venturare
               </a>
             </li>
           </ul>
           {socialLinks.length > 0 && (
             <div class="mt-8">
-              <h3 class="text-eyebrow font-semibold text-venturare-muted/85 uppercase tracking-widest mb-5">Redes</h3>
+              <h3 class="text-eyebrow font-semibold text-muted/85 uppercase tracking-widest mb-5">Redes</h3>
               <ul class="space-y-3">
                 {socialLinks.map((social: { label: string; href: string }) => (
                   <li>
-                    <a href={social.href} class="text-small text-venturare-muted/75 hover:text-venturare-white transition-colors duration-200" target="_blank" rel="noopener noreferrer">
+                    <a href={social.href} class="text-small text-muted/75 hover:text-foreground transition-colors duration-200" target="_blank" rel="noopener noreferrer">
                       {social.label}
                     </a>
                   </li>
@@ -66,10 +66,10 @@ const socialLinks: Array<{ label: string; href: string }> = [];
     <Divider />
 
     <div class="py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-caption text-venturare-muted/80">
+      <p class="text-caption text-muted/80">
         &copy; {year} Venturare. Todos os direitos reservados.
       </p>
-      <p class="text-caption text-venturare-muted/80">
+      <p class="text-caption text-muted/80">
         venturare.com.br
       </p>
     </div>

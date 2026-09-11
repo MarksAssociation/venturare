@@ -48,9 +48,9 @@ const stepIconPaths: Record<string, string> = {
         <Eyebrow text="Nossa abordagem" class="mb-8" />
         <Heading tag="h1" size="hero" class="mb-8 text-balance">
           O FUTURO NÃO COMEÇA NA EXECUÇÃO.<br />
-          <span class="text-venturare-green">COMEÇA NA COMPREENSÃO.</span>
+          <span class="text-accent">COMEÇA NA COMPREENSÃO.</span>
         </Heading>
-        <p class="text-body-xl text-venturare-muted/80 max-w-2xl leading-relaxed">
+        <p class="text-body-xl text-muted/80 max-w-2xl leading-relaxed">
           Antes de decidir o que fazer, precisamos entender o que realmente está acontecendo.
         </p>
       </div>
@@ -66,9 +66,9 @@ const stepIconPaths: Record<string, string> = {
     <Container>
       <div class="max-w-4xl mx-auto text-center">
         <Eyebrow text="Tese central" class="mb-8" />
-        <p class="text-thesis text-venturare-white tracking-tight text-balance">
+        <p class="text-thesis text-foreground tracking-tight text-balance">
           &ldquo;{TESE.split('. ')[0].replace(/\.+$/, '')}.
-          <span class="block text-venturare-muted/85 mt-6 text-body-lg">{TESE.split('. ').slice(1).join('. ').replace(/\.+$/, '')}.&rdquo;</span>
+          <span class="block text-muted/85 mt-6 text-body-lg">{TESE.split('. ').slice(1).join('. ').replace(/\.+$/, '')}.&rdquo;</span>
         </p>
       </div>
     </Container>
@@ -84,29 +84,29 @@ const stepIconPaths: Record<string, string> = {
         <Heading tag="h2" size="h2" class="mb-4">
           Um vocabulário que orienta o trabalho
         </Heading>
-        <p class="text-body-lg text-venturare-muted/80">
+        <p class="text-body-lg text-muted/80">
           Seis movimentos conectam compreensão, decisão e realização.
         </p>
       </div>
 
       <div class="relative">
         {/* Trajetória horizontal — desktop */}
-        <div class="hidden md:block absolute top-7 left-6 right-6 h-px bg-gradient-to-r from-transparent via-venturare-border/60 to-transparent" aria-hidden="true"></div>
+        <div class="hidden md:block absolute top-7 left-6 right-6 h-px bg-gradient-to-r from-transparent via-border/60 to-transparent" aria-hidden="true"></div>
         {/* Trajetória vertical — mobile */}
-        <div class="md:hidden absolute left-6 top-4 bottom-4 w-px bg-gradient-to-b from-venturare-border/60 via-venturare-border/25 to-transparent" aria-hidden="true"></div>
+        <div class="md:hidden absolute left-6 top-4 bottom-4 w-px bg-gradient-to-b from-border/60 via-border/25 to-transparent" aria-hidden="true"></div>
 
         <div class="relative z-10 grid grid-cols-1 md:grid-cols-6 gap-10 md:gap-5">
           {practicalSteps.map((step) => (
             <div class="group flex items-start gap-5 md:flex-col md:items-center md:text-center">
-              <div class="relative z-10 w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-full border border-venturare-border/40 bg-venturare-black flex items-center justify-center transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-venturare-green/40">
-                <svg class="w-5 h-5 md:w-6 md:h-6 text-venturare-muted transition-colors duration-300 group-hover:text-venturare-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={stepIconPaths[step.icon]} />
+              <div class="relative z-10 w-12 h-12 md:w-14 md:h-14 shrink-0 rounded-full border border-border/40 bg-background flex items-center justify-center transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-accent/40">
+                <svg class="w-5 h-5 md:w-6 md:h-6 text-muted transition-colors duration-300 group-hover:text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={stepIconPaths[step.icon]} />
               </div>
               <div class="md:pt-6">
-                <p class="text-caption text-venturare-green-dim mb-2 md:mb-3">{step.num}</p>
-                <p class="text-h4 md:text-h3 text-venturare-white font-display font-semibold tracking-tight mb-2 md:mb-3 transition-colors duration-300 group-hover:text-venturare-green">
+                <p class="text-caption text-accent-dim mb-2 md:mb-3">{step.num}</p>
+                <p class="text-h4 md:text-h3 text-foreground font-display font-semibold tracking-tight mb-2 md:mb-3 transition-colors duration-300 group-hover:text-accent">
                   {step.verb}
                 </p>
-                <p class="text-body text-venturare-muted/75 leading-relaxed max-w-[220px] md:max-w-[180px] transition-colors duration-300 group-hover:text-venturare-white/80">
+                <p class="text-body text-muted/75 leading-relaxed max-w-[220px] md:max-w-[180px] transition-colors duration-300 group-hover:text-foreground/80">
                   {step.phrase}
                 </p>
               </div>
@@ -125,16 +125,16 @@ const stepIconPaths: Record<string, string> = {
       <div class="max-w-4xl mx-auto text-center">
         <Eyebrow text="Nosso princípio" class="mb-10" />
         <Heading tag="h2" size="h2" class="text-balance">
-          NEGÓCIO ANTES DA <span class="text-venturare-green">EXECUÇÃO.</span>
+          NEGÓCIO ANTES DA <span class="text-accent">EXECUÇÃO.</span>
           <br />
-          ESTRATÉGIA ANTES DA <span class="text-venturare-green">TECNOLOGIA.</span>
+          ESTRATÉGIA ANTES DA <span class="text-accent">TECNOLOGIA.</span>
         </Heading>
         <div class="flex items-center justify-center gap-4 mt-10 mb-8" aria-hidden="true">
-          <span class="h-px w-10 bg-gradient-to-r from-transparent to-venturare-green/40"></span>
-          <span class="w-1.5 h-1.5 rotate-45 bg-venturare-green/50"></span>
-          <span class="h-px w-10 bg-gradient-to-l from-transparent to-venturare-green/40"></span>
+          <span class="h-px w-10 bg-gradient-to-r from-transparent to-accent/40"></span>
+          <span class="w-1.5 h-1.5 rotate-45 bg-accent/50"></span>
+          <span class="h-px w-10 bg-gradient-to-l from-transparent to-accent/40"></span>
         </div>
-        <p class="text-body-lg text-venturare-muted/80 leading-relaxed">
+        <p class="text-body-lg text-muted/80 leading-relaxed">
           A tecnologia é meio.
           <br />
           A execução transforma direção em resultado.
@@ -152,7 +152,7 @@ const stepIconPaths: Record<string, string> = {
         <Heading tag="h2" size="h2" class="mb-6 text-balance">
           TEM UMA DECISÃO IMPORTANTE PELA FRENTE?
         </Heading>
-        <p class="text-body-lg text-venturare-muted/80 mb-10">
+        <p class="text-body-lg text-muted/80 mb-10">
           Vamos começar pela compreensão.
         </p>
         <div class="flex justify-center">

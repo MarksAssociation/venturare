@@ -4,26 +4,96 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Semantic color tokens ── */
+:root {
+  --color-background: 8 10 11;
+  --color-surface: 17 21 24;
+  --color-surface-elevated: 18 49 66;
+  --color-foreground: 245 247 246;
+  --color-foreground-muted: 155 165 168;
+  --color-foreground-dim: 113 128 135;
+  --color-border: 38 50 55;
+  --color-border-strong: 55 70 76;
+  --color-accent: 46 184 55;
+  --color-accent-dim: 37 154 45;
+  --color-accent-hover: 56 204 65;
+  --color-navy: 11 27 38;
+  --color-navy-fg: 245 247 246;
+  --color-input-bg: 17 21 24;
+  --color-input-border: 38 50 55;
+  --color-input-placeholder: 113 128 135;
+  --color-focus-ring: 46 184 55;
+  --color-success: 46 184 55;
+  --color-error: 220 53 69;
+
+  /* Brand (static) */
+  --color-copper: 184 137 90;
+  --color-green-fg: 255 255 255;
+}
+
+[data-theme="light"] {
+  --color-background: 247 248 247;
+  --color-surface: 255 255 255;
+  --color-surface-elevated: 238 242 241;
+  --color-foreground: 11 27 38;
+  --color-foreground-muted: 82 97 107;
+  --color-foreground-dim: 107 119 128;
+  --color-border: 220 227 225;
+  --color-border-strong: 201 213 209;
+  --color-accent: 22 138 70;
+  --color-accent-dim: 17 115 58;
+  --color-accent-hover: 28 156 82;
+  --color-navy: 11 27 38;
+  --color-navy-fg: 245 247 246;
+  --color-input-bg: 255 255 255;
+  --color-input-border: 220 227 225;
+  --color-input-placeholder: 122 135 141;
+  --color-focus-ring: 22 138 70;
+  --color-success: 22 138 70;
+  --color-error: 197 39 51;
+  --color-green-fg: 255 255 255;
+  --color-copper: 160 115 70;
+}
+
 @layer base {
   html {
     @apply scroll-smooth;
+    color-scheme: dark;
+  }
+
+  [data-theme="light"] {
+    color-scheme: light;
+  }
+
+  .logo-wordmark img {
+    filter: brightness(0) invert(1);
+  }
+
+  [data-theme="light"] .logo-wordmark img {
+    filter: brightness(0);
   }
 
   body {
-    @apply bg-venturare-black text-venturare-white font-sans antialiased w-full;
+    @apply font-sans antialiased w-full;
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
     @apply transition-colors duration-200;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display text-venturare-white;
+    @apply font-display;
+    color: rgb(var(--color-foreground));
   }
 
   ::selection {
-    @apply bg-venturare-green/20 text-venturare-white;
+    background-color: rgb(var(--color-accent) / 0.2);
+    color: rgb(var(--color-foreground));
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-venturare-green ring-offset-2 ring-offset-venturare-black;
+    @apply outline-none ring-2;
+    --tw-ring-color: rgb(var(--color-focus-ring));
+    --tw-ring-offset-color: rgb(var(--color-background));
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -55,60 +125,99 @@
   .btn {
     @apply inline-flex items-center justify-center gap-2 px-5 py-2.5
            font-button rounded transition-all duration-200
-           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-venturare-green focus-visible:ring-offset-2 focus-visible:ring-offset-venturare-black
+           focus-visible:outline-none focus-visible:ring-2
            disabled:opacity-50 disabled:cursor-not-allowed;
+    --tw-ring-color: rgb(var(--color-focus-ring));
+    --tw-ring-offset-color: rgb(var(--color-background));
   }
 
   .btn-primary {
-    @apply btn bg-venturare-green text-venturare-black font-button opacity-100
-           hover:bg-venturare-green/90 active:bg-venturare-green-dim;
+    @apply btn font-button opacity-100;
+    background-color: rgb(var(--color-accent));
+    color: rgb(var(--color-green-fg));
+  }
+  .btn-primary:hover {
+    background-color: rgb(var(--color-accent-hover));
+  }
+  .btn-primary:active {
+    background-color: rgb(var(--color-accent-dim));
   }
 
   .btn-secondary {
-    @apply btn border border-venturare-border text-venturare-muted font-button
-           hover:border-venturare-green/50 hover:text-venturare-white
-           active:border-venturare-green active:text-venturare-green;
+    @apply btn font-button;
+    border-color: rgb(var(--color-border));
+    color: rgb(var(--color-foreground-muted));
+  }
+  .btn-secondary:hover {
+    border-color: rgb(var(--color-accent) / 0.5);
+    color: rgb(var(--color-foreground));
+  }
+  .btn-secondary:active {
+    border-color: rgb(var(--color-accent));
+    color: rgb(var(--color-accent));
   }
 
   .btn-ghost {
-    @apply btn text-venturare-muted font-button
-           hover:text-venturare-green active:text-venturare-green-dim;
+    @apply btn font-button;
+    color: rgb(var(--color-foreground-muted));
+  }
+  .btn-ghost:hover {
+    color: rgb(var(--color-accent));
+  }
+  .btn-ghost:active {
+    color: rgb(var(--color-accent-dim));
   }
 
   .btn-text {
-    @apply inline-flex items-center gap-2 font-button text-venturare-muted
-           hover:text-venturare-green transition-colors duration-150;
+    @apply inline-flex items-center gap-2 font-button transition-colors duration-150;
+    color: rgb(var(--color-foreground-muted));
+  }
+  .btn-text:hover {
+    color: rgb(var(--color-accent));
   }
 
   .card {
-    @apply bg-venturare-graphite border border-venturare-border rounded-lg
-           transition-all duration-300 p-6;
+    @apply rounded-lg transition-all duration-300 p-6;
+    background-color: rgb(var(--color-surface));
+    border-color: rgb(var(--color-border));
   }
 
   .card-hover {
-    @apply card hover:border-venturare-border/80 hover:bg-venturare-graphite/80;
+    @apply card;
+    transition: border-color 0.3s, background-color 0.3s;
+  }
+  .card-hover:hover {
+    border-color: rgb(var(--color-border-strong));
+    background-color: rgb(var(--color-surface-elevated));
   }
 
   .input {
-    @apply w-full px-4 py-3 rounded bg-transparent border border-venturare-border
-           text-venturare-white placeholder:text-venturare-muted/40
-           focus:outline-none focus:ring-1 focus:ring-venturare-green focus:border-venturare-green
-           transition-all duration-150;
-    color-scheme: dark;
+    @apply w-full px-4 py-3 rounded transition-all duration-150;
+    background-color: rgb(var(--color-input-bg));
+    border: 1px solid rgb(var(--color-input-border));
+    color: rgb(var(--color-foreground));
+  }
+  .input::placeholder {
+    color: rgb(var(--color-input-placeholder));
+  }
+  .input:focus {
+    @apply outline-none;
+    border-color: rgb(var(--color-accent));
+    box-shadow: 0 0 0 1px rgb(var(--color-accent));
   }
 
-  /* Popup nativo do select (Chrome/Windows usa fundo claro por padrão):
-     fundo e texto explícitos para contraste em campo fechado e aberto. */
   select.input option {
-    @apply bg-venturare-graphite text-venturare-white;
+    background-color: rgb(var(--color-input-bg));
+    color: rgb(var(--color-foreground));
   }
 
   .label {
-    @apply block text-eyebrow font-semibold text-venturare-muted mb-2 uppercase;
+    @apply block text-eyebrow font-semibold mb-2 uppercase;
+    color: rgb(var(--color-foreground-muted));
   }
 
   .divider {
-    @apply border-t border-venturare-border/30;
+    border-top: 1px solid rgb(var(--color-border) / 0.3);
   }
 
   .prose-content {
@@ -116,22 +225,26 @@
   }
 
   .prose-content p {
-    @apply mb-8 text-body text-venturare-muted;
+    @apply mb-8 text-body;
+    color: rgb(var(--color-foreground-muted));
     line-height: 1.8;
   }
 
   .prose-content h2 {
-    @apply mt-16 mb-6 text-h2 text-venturare-white font-semibold tracking-tight;
+    @apply mt-16 mb-6 text-h2 font-semibold tracking-tight;
+    color: rgb(var(--color-foreground));
     line-height: 1.2;
   }
 
   .prose-content h3 {
-    @apply mt-12 mb-4 text-h3 text-venturare-white font-medium tracking-tight;
+    @apply mt-12 mb-4 text-h3 font-medium tracking-tight;
+    color: rgb(var(--color-foreground));
     line-height: 1.3;
   }
 
   .prose-content ul, .prose-content ol {
-    @apply mb-8 ml-6 text-venturare-muted;
+    @apply mb-8 ml-6;
+    color: rgb(var(--color-foreground-muted));
   }
 
   .prose-content li {
@@ -139,16 +252,20 @@
   }
 
   .prose-content blockquote {
-    @apply border-l-2 border-venturare-green pl-5 py-1 my-10 text-venturare-muted;
+    @apply border-l-2 pl-5 py-1 my-10;
+    border-color: rgb(var(--color-accent));
+    color: rgb(var(--color-foreground-muted));
     font-style: normal;
   }
 
   .prose-content strong {
-    @apply text-venturare-white font-semibold;
+    @apply font-semibold;
+    color: rgb(var(--color-foreground));
   }
 
   .prose-content em {
-    @apply font-serif text-venturare-white/90;
+    @apply font-serif;
+    color: rgb(var(--color-foreground) / 0.9);
   }
 
   .section-padding {
@@ -156,7 +273,7 @@
   }
 
   .section-border {
-    @apply border-t border-venturare-border/20;
+    border-top: 1px solid rgb(var(--color-border) / 0.2);
   }
 
   .motion-reduce {

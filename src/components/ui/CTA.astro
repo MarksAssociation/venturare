@@ -1,4 +1,4 @@
----
+﻿---
 import Container from '@/components/ui/Container.astro';
 import Section from '@/components/ui/Section.astro';
 import Heading from '@/components/ui/Heading.astro';
@@ -30,17 +30,17 @@ const {
 } = Astro.props;
 ---
 
-<Section class:list={['border-t border-venturare-border/20', className]}>
+<Section class:list={['border-t border-border/20', className]}>
   <Container>
     <div class="max-w-4xl mx-auto text-center">
       {eyebrow && <Eyebrow text={eyebrow} class="mb-6" />}
       {title && (
         <Heading tag="h2" size="h2" class="mb-6 text-balance">
           {title}
-          {highlight && <><br /><span class="text-venturare-green">{highlight}</span></>}
+          {highlight && <><br /><span class="text-accent">{highlight}</span></>}
         </Heading>
       )}
-      {sub && <p class="text-body-lg text-venturare-muted/80 max-w-2xl mx-auto mb-10 leading-relaxed">{sub}</p>}
+      {sub && <p class="text-body-lg text-muted/80 max-w-2xl mx-auto mb-10 leading-relaxed">{sub}</p>}
       <div class="flex flex-wrap items-center justify-center gap-4">
         <Button href={primaryHref} variant="primary">
           {primaryLabel}

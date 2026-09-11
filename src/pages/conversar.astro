@@ -1,4 +1,4 @@
----
+﻿---
 import PageLayout from '@/layouts/PageLayout.astro';
 import Container from '@/components/ui/Container.astro';
 import Section from '@/components/ui/Section.astro';
@@ -31,7 +31,7 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
         <Heading tag="h1" size="hero" class="mb-8 text-balance">
           {CONTACT_HERO}
         </Heading>
-        <p class="text-body-xl text-venturare-muted/80 max-w-2xl leading-relaxed">
+        <p class="text-body-xl text-muted/80 max-w-2xl leading-relaxed">
           {CONTACT_SUB}
         </p>
       </div>
@@ -50,12 +50,12 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
 
         {/* Lateral */}
         <div class="lg:col-span-5">
-          <div class="max-w-md lg:pl-8 lg:border-l lg:border-venturare-border/30">
+          <div class="max-w-md lg:pl-8 lg:border-l lg:border-border/30">
             <Eyebrow text={CONTACT_SIDE_TITLE} class="mb-8" />
-            <p class="text-body-xl text-venturare-muted/80 leading-relaxed">
+            <p class="text-body-xl text-muted/80 leading-relaxed">
               {CONTACT_SIDE_TEXT}
             </p>
-            <p class="text-small text-venturare-muted/75 mt-10">
+            <p class="text-small text-muted/75 mt-10">
               {CONTACT_PRIVACY}
             </p>
           </div>

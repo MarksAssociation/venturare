@@ -49,7 +49,7 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
         <Heading tag="h1" size="hero" class="mb-8 text-balance">
           {INSIGHT_HERO}
         </Heading>
-        <p class="text-body-xl text-venturare-muted/80 max-w-2xl leading-relaxed">
+        <p class="text-body-xl text-muted/80 max-w-2xl leading-relaxed">
           {INSIGHT_SUB}
         </p>
       </div>
@@ -90,16 +90,16 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
         </Heading>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-venturare-border/20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-border/20">
         {INSIGHT_CATEGORIES.map((cat) => (
           <a href={`/insights/${cat.id}`} class="group bg-background p-8 lg:p-10">
-            <span class="text-caption text-venturare-green/70 uppercase tracking-widest block mb-3">
+            <span class="text-caption text-accent/70 uppercase tracking-widest block mb-3">
               {cat.label}
             </span>
-            <p class="text-body-lg text-venturare-muted/80 leading-relaxed group-hover:text-venturare-white/80 transition-colors duration-200">
+            <p class="text-body-lg text-muted/80 leading-relaxed group-hover:text-foreground/80 transition-colors duration-200">
               {cat.description}
             </p>
-            <span class="inline-flex items-center gap-2 text-small text-venturare-muted/75 mt-5 group-hover:text-venturare-green transition-colors duration-200">
+            <span class="inline-flex items-center gap-2 text-small text-muted/75 mt-5 group-hover:text-accent transition-colors duration-200">
               Explorar <span class="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
             </span>
           </a>
@@ -149,23 +149,23 @@ const jsonLd = JSON.stringify(generateWebPageJsonLd({
         <Heading tag="h2" size="h2" class="mb-6">
           {INSIGHT_PIPELINE_TITLE}
         </Heading>
-        <p class="text-body-lg text-venturare-muted/80">
+        <p class="text-body-lg text-muted/80">
           {INSIGHT_PIPELINE_SUB}
         </p>
       </div>
 
-      <p class="text-caption text-venturare-green/70 uppercase tracking-widest mb-6 max-w-4xl">
+      <p class="text-caption text-accent/70 uppercase tracking-widest mb-6 max-w-4xl">
         {INSIGHT_PIPELINE_LABEL}
       </p>
-      <div class="max-w-4xl divide-y divide-venturare-border/20">
+      <div class="max-w-4xl divide-y divide-border/20">
         {INSIGHT_EDITORIAL_TITLES.map((title, i) => (
           <div class="py-5 lg:py-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-baseline">
               <div class="lg:col-span-2">
-                <span class="text-caption text-venturare-muted/70 font-medium">{String(i + 1).padStart(2, '0')}</span>
+                <span class="text-caption text-muted/70 font-medium">{String(i + 1).padStart(2, '0')}</span>
               </div>
               <div class="lg:col-span-10">
-                <p class="text-body-lg text-venturare-white/85 font-display font-semibold tracking-tight">
+                <p class="text-body-lg text-foreground/85 font-display font-semibold tracking-tight">
                   {title}
                 </p>
               </div>
