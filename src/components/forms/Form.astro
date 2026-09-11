@@ -1,5 +1,6 @@
 ---
 import { CONTACT_FIELDS, CONTACT_LOOKING_FOR, CONTACT_SUBMIT, CONTACT_SUCCESS_TITLE, CONTACT_SUCCESS_TEXT } from '@/lib/constants';
+import Button from '@/components/ui/Button.astro';
 
 interface Props {
   class?: string;
@@ -12,7 +13,7 @@ const configured = typeof endpoint === 'string' && endpoint.length > 0;
 ---
 
 
-<form id="contact-form" method="post" action={endpoint} class:list={['grid grid-cols-1 gap-6', className]} data-success-title={CONTACT_SUCCESS_TITLE} data-success-text={CONTACT_SUCCESS_TEXT}>
+<form id="contact-form" method="post" action={endpoint} class:list={['grid grid-cols-1 gap-6', className]}>
   {configured && <input type="hidden" name="form-name" value="conversar" />}
 
   {CONTACT_FIELDS.map((field) => (
@@ -64,6 +65,21 @@ const configured = typeof endpoint === 'string' && endpoint.length > 0;
   )}
 </form>
 
+<div id="contact-success" class="hidden" role="status">
+  <div class="w-12 h-12 rounded-full border border-venturare-green/40 bg-venturare-green/10 flex items-center justify-center mb-8" aria-hidden="true">
+    <svg class="w-5 h-5 text-venturare-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5 10-11" /></svg>
+  </div>
+  <h2 id="contact-success-title" tabindex="-1" class="text-h3 font-display font-semibold text-venturare-white tracking-tight mb-6 outline-none">
+    {CONTACT_SUCCESS_TITLE}
+  </h2>
+  <p class="text-body-lg text-venturare-muted/80 leading-relaxed max-w-xl mb-10">
+    {CONTACT_SUCCESS_TEXT}
+  </p>
+  <Button href="/" variant="secondary">
+    Voltar ao início
+  </Button>
+</div>
+
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const status = document.getElementById('form-status');
@@ -93,10 +109,14 @@ const configured = typeof endpoint === 'string' && endpoint.length > 0;
           body: data,
         });
         if (!response.ok) throw new Error('network');
-        const title = form.dataset.successTitle ?? 'RECEBEMOS.';
-        const text = form.dataset.successText ?? 'Agora começa a conversa.';
-        status.textContent = `${title} ${text}`;
         form.reset();
+        form.classList.add('hidden');
+        const panel = document.getElementById('contact-success');
+        if (panel) {
+          panel.classList.remove('hidden');
+          const title = document.getElementById('contact-success-title');
+          if (title instanceof HTMLElement) title.focus();
+        }
       } catch {
         status.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
         if (button) button.disabled = false;

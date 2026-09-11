@@ -427,5 +427,6 @@ export const CONTACT_SUBMIT = 'INICIAR CONVERSA →';
 export const CONTACT_SIDE_TITLE = 'NÃO PRECISA TER A RESPOSTA.';
 export const CONTACT_SIDE_TEXT = 'Pode começar pelo problema. A primeira conversa existe para compreender.';
 export const CONTACT_PRIVACY = 'Seus dados são usados exclusivamente para contato sobre a sua solicitação.';
-export const CONTACT_SUCCESS_TITLE = 'RECEBEMOS.';
-export const CONTACT_SUCCESS_TEXT = 'Agora começa a conversa.';
+export const CONTACT_SUCCESS_TITLE = 'O PRÓXIMO MOVIMENTO COMEÇA AQUI.';
+export const CONTACT_SUCCESS_TEXT =
+  'Sua mensagem foi encaminhada à nossa equipe. Em breve, entraremos em contato para compreender melhor o seu desafio.';
